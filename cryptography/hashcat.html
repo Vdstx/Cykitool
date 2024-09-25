@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Cryptography Tools - Tool Description</title>
+    <link rel="stylesheet" href="../styles/tools.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="../scripts/list-script.js" ></script>
+</head>
+
+<body>
+
+
+
+    <header class="category-header">
+        <div class="container">
+            <div class="category-name">
+                <h1><a href="cryptography.html">Cryptography</a></h1>
+                <p><a href="../home.html">Home</a></p>
+            </div>
+            <div class="tool-info">
+                <img src="../images/hashcat.png" alt="Tool Logo" class="tool-logo">
+                <h2>Hashcat</h2>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="tools-list-container"></div>
+
+        <section class="tool-description">
+            <h2>About Hashcat</h2>
+            <p><strong>Hashcat</strong> is the world's fastest and most advanced password recovery utility, supporting five unique modes of attack for over 300 highly-optimized hashing algorithms. hashcat currently supports CPUs, GPUs, and other hardware accelerators on Linux, Windows, and macOS, and has facilities to help enable distributed password cracking.</p>
+
+            <h2>Installation</h2>
+            <p>Linux installation:</p>
+            <code>sudo apt install hashcat</code>
+            <br>
+            <br>
+
+            <h2>Basic Syntax (example)</h2>
+            <code>hashcat -m 3200 -T 4 -a 0 -o CRACKED.txt HASH.txt /usr/share/wordlists/rockyou.txt</code>
+            <p> <strong>-m</strong> specifies the hash-type given by <a href="https://hashcat.net/wiki/doku.php?id=example_hashes">hashcat wiki</a>.</p>
+            <p> <strong>-T</strong> speciefies the number of core used for the execution.</p>
+            <p> <strong>-a</strong> pecifies the attack type:
+                <ul>
+                    <li><code>0</code> wordlist attack</li>
+                    <li><code>1</code> combined attack</li>
+                    <li><code>3</code> mask attack (brute-force)</li>
+                    <li><code>6</code> hybrid attack (wordlist+mask)</li>
+                </ul>           
+            </p>
+            <p><strong>-o</strong> specifies the filename the cracked hash is to be stored
+                followed by the file name that contains the hash — here `HASH.txt`
+                and finally the path to the wordlist.</p>
+            <br>
+
+            <h2>Useful options</h2>
+            <p><code>-w</code>: Sets workload profile for devices (1 = slow and low power consumption; 4 = fast, high performance).</p>
+            <p><code>-p</code>: Defines a separator for hashes in a hash file. </p>
+            <p><code>--force</code>: Forces Hashcat to ignore some errors or warnings. </p>
+            <p><code>--status</code>: Displays the current status of the attack. </p>
+            <br>
+
+            <h2>Managing GPU/CPU Devices:</h2>
+            <p><code>-D 1</code>: Uses CPU only.</p>
+            <p><code>-D 2</code>: Uses GPU only.</p>
+            <p><code>-I</code>: Identify available devices.</p>
+            <br>
+
+            <h2>Benchmark & more informations</h2>
+            <p>To test your machine’s performance across different hash types:</p>
+            <code>hashcat -b</code>
+            <br>
+            <br>
+            
+            <p>More informations on this <a href="https://hashcat.net/hashcat/">this site</a>.</p>
+            
+        </section>
+    </main>
+
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Cykitool Library. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

@@ -118,6 +118,21 @@ main.container {
     color: #555;
 }
 
+.tool-description a{
+    color:#07215b;
+    text-decoration: none;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.tool-description a:hover{
+    color:#0056b3;
+    text-decoration: none;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+
 .tool-description code {
     margin-bottom: 15px;
     font-size: 1rem;
@@ -126,6 +141,14 @@ main.container {
     border-radius: 2px;
     padding-left: 1px;
     padding-right: 1px;
+}
+
+.tool-description ul{
+    padding-left:5%;
+    color:#555;
+    text-decoration: none;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
 }
 
 footer {
