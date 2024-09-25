@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Cryptography Tools - Tool Description</title>
+    <link rel="stylesheet" href="../styles/tools.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="../scripts/list-script.js" ></script>
+</head>
+
+<body>
+    <header id="cryptoContainer" class="category-header">
+        <div class="container">
+            <div class="category-name">
+                <h1><a href="cryptography.html">Cryptography</a></h1>
+                <p><a href="../home.html">Home</a></p>
+            </div>
+            <div class="tool-info">
+                <img src="../images/hydra.png" alt="Tool Logo" class="tool-logo">
+                <h2>Hydra</h2>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="tools-list-container"></div>
+
+        <section class="tool-description">
+            <h2>About Hydra</h2>
+            <p><strong>Hydra</strong> (also known as THC-Hydra) is a popular, open-source network login cracker that supports a wide variety of protocols, making it an essential tool for penetration testers and cybersecurity professionals. It is mainly used to perform brute-force and dictionary-based attacks against various authentication services like SSH, FTP, HTTP, and more. Hydra is highly efficient due to its ability to test multiple password combinations at once (parallel attacks). It’s particularly useful for cracking login credentials during vulnerability assessments and security audits.</p>
+            <br>
+
+            <h2>Installation</h2>
+            <p>Linux installation</p>
+            <code>sudo apt install hydra</code>
+            <br>
+            <br>
+            <p>Alternatively, still on linux</p>
+            <code>git clone https://github.com/vanhauser-thc/thc-hydra<br>
+                cd thc-hydra<br>
+                ./configure<br>
+                make<br>
+                sudo make install</code>
+            <br>
+            <br>
+
+            <h2>Examples of Hydra Usage</h2>
+            <p>Brute-force attack on an SSH service:</p>
+            <code>hydra -L usernames.txt -P passwords.txt ssh://192.168.1.100</code>
+            <br>
+            <br>
+            <ul>
+                <li><strong>-L usernames.txt</strong>: Path to the file containing a list of usernames.</li>
+                <li><strong>-P passwords.txt</strong>: Path to the file containing a list of passwords.</li>
+                <li><strong>ssh://192.168.1.100</strong>: Target IP address for the SSH service.</li>
+            </ul>
+
+            <p>Brute-force attack on an FTP service:</p>
+            <code>hydra -l admin -P passwords.txt ftp://192.168.1.100</code>
+            <br>
+            <br>
+            <ul>
+                <li><strong>-l admin</strong>: Single username (admin in this case).</li>
+                <li><strong>ftp://192.168.1.100</strong>: FTP service URL (default port 21).</li>
+            </ul>
+
+            <p>HTTP login page brute force:</p>
+            <code>hydra -l admin -P passwords.txt http-post-form "/login.php:username=^USER^&password=^PASS^:F=incorrect"</code>
+            <br>
+            <br>
+            <ul>
+                <li><strong>/login.php</strong>: Path to the login form.</li>
+                <li><strong>^USER^</strong> and <strong>^PASS^</strong>: Placeholders for username and password in the POST request.</li>
+                <li><strong>F=incorrect</strong>: Fail condition (the text Hydra looks for when login fails).</li>
+            </ul>
+
+            <p>Brute-force attack on an RDP service:</p>
+            <code>hydra -t 4 -V -f -l user1 -P passlist.txt rdp://192.168.1.100</code>
+            <br>
+            <br>
+            <ul>
+                <li><strong>rdp://192.168.1.100</strong>: RDP service on the target host.</li>
+            </ul>
+            <br>
+
+            <h2>Useful options</h2>
+            <ul>
+                <li><code>-l</code>: <strong>Specify username</strong> list or a single username, respectively.</li>
+                <li><code>-p</code>: <strong>Specify password list</strong> or a single password, respectively.</li>
+                <li><code>-s</code>: Specify the <strong>target port</strong> (if different from the default)</li>
+                <li><code>-f</code>: Stop after the <strong>first valid login</strong>.</li>
+                <li><code>-V</code>: <strong>Verbose mode</strong>, shows details of each attempt.</li>
+                <li><code>-t</code>: Number of <strong>parallel</strong> tasks/threads.</li>
+                <li><code>-e nsr</code>: Try "no password," "same as username," and "reverse username" as passwords.</li>
+                <li><code>-M</code>: Use a file containing multiple target IP addresses.</li>
+                <li>-o<code></code>: Output results to a file.</li>
+            </ul>
+
+
+        </section>
+    </main>
+
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Cykitool Library. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
