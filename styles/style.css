@@ -106,6 +106,26 @@ header nav ul li a {
     background-color: #0056b3;
 }
 
+#crypto{
+    background-color: #f5efe6;
+}
+
+#web{
+    background-color: #D5CABC;
+}
+
+#network{
+    background-color: #E8D5CC;
+}
+
+#forensics{
+    background-color:#BDA18A ;
+}
+
+
+
+
+
 footer {
     background-color: #07215b;
     color: #fff;
