@@ -1,1 +1,142 @@
 /* Tools page style */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header.category-header {
+    display: flex;
+    background-color: #3fa9d5;
+    color: white;
+    padding: 20px;
+}
+
+header.category-header .container {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.category-name {
+    width: 20%;
+}
+
+.category-name h1 {
+    font-size: 1.8rem;
+}
+
+.category-name h1 a {
+    color:white;
+    font-size: 1.8rem;
+    text-decoration: none;
+}
+
+.tool-info {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 80%;
+    padding-left: 20px;
+}
+
+.tool-info .tool-logo {
+    max-width: 80px;
+    margin-right: 20px;
+    border-radius: 20%;
+}
+
+.tool-info h2 {
+    font-size: 2rem;
+}
+
+main.container {
+    display: flex;
+    padding: 20px;
+}
+
+.tools-list {
+    width: 20%;
+    background-color: #f8f9fa;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.tools-list h2 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+}
+
+.tools-list ul {
+    list-style-type: none;
+    margin-top: 15px;
+}
+
+.tools-list ul li {
+    margin-bottom: 10px;
+}
+
+.tools-list ul li a {
+    text-decoration: none;
+    color: #07215b;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.tools-list ul li a:hover {
+    color: #0056b3;
+}
+
+.tool-description {
+    width: 80%;
+    padding-left: 40px;
+}
+
+.tool-description h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.tool-description p {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.tool-description code {
+    margin-bottom: 15px;
+    font-size: 1rem;
+    color: white;
+    background-color: gray;
+    border-radius: 2px;
+    padding-left: 1px;
+    padding-right: 1px;
+}
+
+footer {
+    background-color: #222;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
+}
+
+footer p {
+    font-size: 0.9rem;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
