@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Tools - Zeek (Bro)</title>
+    <link rel="stylesheet" href="../styles/tools.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="../scripts/list-script.js"></script>
+</head>
+
+<body>
+    <header id="networkContainer" class="category-header">
+        <div class="container">
+            <div class="category-name">
+                <h1><a href="network.html">Network</a></h1>
+                <p><a href="../home.html">Home</a></p>
+            </div>
+            <div class="tool-info">
+                <img src="../images/zeek.webp" alt="Zeek Logo" class="tool-logo">
+                <h2>Zeek (formerly Bro)</h2>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="tools-list-container-network"></div>
+
+        <section class="tool-description">
+            <h2>About Zeek (Bro)</h2>
+            <p><strong>Zeek</strong>, formerly known as <strong>Bro</strong>, is a powerful network analysis framework focused on security monitoring. It operates as a passive network traffic analyzer, observing all traffic on a network link and recording detailed logs, detecting anomalies, and triggering alerts based on customizable policies. Zeek is highly extensible and supports scripting for in-depth analysis, making it a valuable tool for network security monitoring, intrusion detection, and forensics.</p>
+            <p>Zeek bridges the gap between traditional signature-based intrusion detection systems and behavioral analysis, providing rich context for network events. It is widely used by security professionals, researchers, and organizations for monitoring large-scale networks.</p>
+            <br>
+
+            <h2>Installation</h2>
+            <p>Zeek can be installed on Unix-like operating systems, including Linux and macOS. Below are the installation steps for common platforms.</p>
+
+            <h3>Linux Installation (Ubuntu/Debian):</h3>
+            <ol>
+                <li>Install required dependencies:</li>
+                <code>sudo apt update && sudo apt install cmake make gcc g++ flex bison libpcap-dev libssl-dev python3-dev swig zlib1g-dev</code>
+                <br>
+                <li>Download the latest Zeek source code from the <a href="https://www.zeek.org/download/index.html">official website</a> or clone the repository:</li>
+                <code>git clone --recursive https://github.com/zeek/zeek.git</code>
+                <br>
+                <li>Navigate to the Zeek directory:</li>
+                <code>cd zeek</code>
+                <br>
+                <li>Configure and build Zeek:</li>
+                <code>./configure</code>
+                <br>
+                <code>make</code>
+                <br>
+                <li>Install Zeek:</li>
+                <code>sudo make install</code>
+                <br>
+                <li>Add Zeek to your PATH (if not done automatically):</li>
+                <code>echo 'export PATH=/usr/local/zeek/bin:$PATH' >> ~/.bashrc</code>
+                <br>
+                <code>source ~/.bashrc</code>
+            </ol>
+            <br>
+
+            <h3>macOS Installation:</h3>
+            <ol>
+                <li>Install Homebrew if not already installed:</li>
+                <code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code>
+                <br>
+                <li>Install Zeek using Homebrew:</li>
+                <code>brew install zeek</code>
+            </ol>
+            <br>
+
+            <h2>Basic Usage of Zeek</h2>
+            <p>Zeek operates by monitoring network interfaces and analyzing traffic. It requires root or sudo privileges to capture network packets.</p>
+
+            <h3>Running Zeek on a Live Interface</h3>
+            <p>To start Zeek monitoring on a specific network interface (e.g., eth0):</p>
+            <code>sudo zeek -i eth0</code>
+            <p>This command starts Zeek in live mode, analyzing traffic on the specified interface.</p>
+            <br>
+
+            <h3>Processing a PCAP File</h3>
+            <p>To analyze a previously captured pcap file:</p>
+            <code>zeek -r capture.pcap</code>
+            <p>This processes the pcap file and generates logs based on the observed traffic.</p>
+            <br>
+
+            <h3>Output Logs</h3>
+            <p>Zeek generates various log files in the current directory, such as:</p>
+            <ul>
+                <li><code>conn.log</code>: Logs of all network connections.</li>
+                <li><code>http.log</code>: Logs of HTTP requests and responses.</li>
+                <li><code>dns.log</code>: Logs of DNS queries and responses.</li>
+                <li><code>notice.log</code>: Security-related alerts and notices.</li>
+            </ul>
+            <br>
+
+            <h2>Advanced Zeek Techniques</h2>
+
+            <h3>Using Zeek Scripts</h3>
+            <p>Zeek's scripting language allows for custom analysis and detection rules.</p>
+            <p>To load a custom script:</p>
+            <code>zeek -i eth0 myscript.zeek</code>
+            <p>Example of a simple Zeek script (<code>myscript.zeek</code>) to log SSH connections:</p>
+            <pre><code>
+event ssh_auth_success(c: connection) 
+    {
+    print fmt("Successful SSH login from %s to %s", c$id$orig_h, c$id$resp_h);
+    }
+            </code></pre>
+            <br>
+
+            <h3>Detecting Anomalies</h3>
+            <p>Zeek can detect various anomalies and suspicious activities, such as port scans, DNS tunneling, or malware communication.</p>
+            <p>Zeek's default policy scripts include detection for common threats.</p>
+            <br>
+
+            <h3>Integration with SIEM Systems</h3>
+            <p>Zeek logs can be integrated into Security Information and Event Management (SIEM) systems for centralized analysis.</p>
+            <p>Logs can be exported in JSON format for compatibility:</p>
+            <code>zeek -i eth0 LogAscii::use_json=T</code>
+            <br>
+
+            <h3>Cluster Deployment</h3>
+            <p>For high-performance environments, Zeek can be deployed in a clustered configuration to distribute the processing load across multiple nodes.</p>
+            <p>Refer to the <a href="https://docs.zeek.org/en/current/cluster/index.html">Zeek Cluster Documentation</a> for setup instructions.</p>
+            <br>
+
+            <h2>Use Cases of Zeek</h2>
+            <ul>
+                <li><strong>Network Security Monitoring</strong>: Continuous monitoring of network traffic for security threats and anomalies.</li>
+                <li><strong>Intrusion Detection</strong>: Detecting unauthorized access attempts and malicious activities.</li>
+                <li><strong>Forensics and Incident Response</strong>: Analyzing network traffic during and after security incidents.</li>
+                <li><strong>Compliance Monitoring</strong>: Ensuring adherence to security policies and regulatory requirements.</li>
+                <li><strong>Research and Education</strong>: Studying network behavior and teaching network security concepts.</li>
+            </ul>
+            <br>
+
+            <h2>Best Practices and Tips</h2>
+            <ul>
+                <li><strong>Regular Updates</strong>: Keep Zeek and its scripts updated to benefit from the latest features and security enhancements.</li>
+                <li><strong>Customize Scripts</strong>: Tailor Zeek's analysis by writing or modifying scripts to suit your environment's needs.</li>
+                <li><strong>Monitor Log Files</strong>: Regularly review Zeek's log files or integrate them with a SIEM for automated analysis.</li>
+                <li><strong>Resource Management</strong>: Ensure adequate system resources are allocated to handle network traffic volume.</li>
+                <li><strong>Community Engagement</strong>: Participate in the Zeek community for support, sharing scripts, and best practices.</li>
+            </ul>
+            <br>
+
+            <h2>Common Zeek Components Summary</h2>
+            <table>
+                <tr>
+                    <th>Component</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td><code>zeekctl</code></td>
+                    <td>Zeek Control utility for managing Zeek instances</td>
+                </tr>
+                <tr>
+                    <td><code>zeek -i &lt;interface&gt;</code></td>
+                    <td>Run Zeek on a live network interface</td>
+                </tr>
+                <tr>
+                    <td><code>zeek -r &lt;pcapfile&gt;</code></td>
+                    <td>Process a pcap file</td>
+                </tr>
+                <tr>
+                    <td><code>scripts/</code></td>
+                    <td>Directory containing Zeek scripts and policies</td>
+                </tr>
+                <tr>
+                    <td><code>logs/</code></td>
+                    <td>Directory where Zeek stores log files</td>
+                </tr>
+                <tr>
+                    <td><code>Notice Framework</code></td>
+                    <td>System for generating and handling alerts</td>
+                </tr>
+                <tr>
+                    <td><code>Input Framework</code></td>
+                    <td>Allows Zeek to read data from external sources</td>
+                </tr>
+            </table>
+            <br>
+
+            <h2>Legal and Ethical Considerations</h2>
+            <p>Zeek operates by capturing and analyzing network traffic, which may include sensitive or personal data. It is essential to use Zeek responsibly and ethically:</p>
+            <ul>
+                <li><strong>Authorization</strong>: Ensure you have explicit permission to monitor network traffic on the networks you analyze.</li>
+                <li><strong>Privacy Compliance</strong>: Adhere to all applicable laws and regulations regarding data privacy and protection, such as GDPR or HIPAA.</li>
+                <li><strong>Data Handling</strong>: Implement appropriate safeguards to protect the confidentiality and integrity of captured data.</li>
+                <li><strong>Transparency</strong>: Inform network users about monitoring activities as required by organizational policies and legal obligations.</li>
+            </ul>
+            <br>
+
+            <h2>Additional Resources</h2>
+            <ul>
+                <li><a href="https://www.zeek.org/">Zeek Official Website</a></li>
+                <li><a href="https://docs.zeek.org/en/current/">Zeek Documentation</a></li>
+                <li><a href="https://github.com/zeek/zeek">Zeek GitHub Repository</a></li>
+                <li><a href="https://zeek.org/get-involved/community/">Zeek Community Resources</a></li>
+                <li><a href="https://try.zeek.org/">Try Zeek Online</a></li>
+                <li><a href="https://corelight.com/">Corelight (Commercial Support for Zeek)</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Cykitool Library made by Students4Cyber. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

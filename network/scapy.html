@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Tools - Scapy</title>
+    <link rel="stylesheet" href="../styles/tools.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="../scripts/list-script.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+
+</head>
+
+<body>
+    <header id="networkContainer" class="category-header">
+        <div class="container">
+            <div class="category-name">
+                <h1><a href="network.html">Network</a></h1>
+                <p><a href="../home.html">Home</a></p>
+            </div>
+            <div class="tool-info">
+                <img src="../images/scapy.svg" alt="Scapy Logo" class="tool-logo">
+                <h2>Scapy</h2>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="tools-list-container-network"></div>
+
+        <section class="tool-description">
+            <h2>About Scapy</h2>
+            <p><strong>Scapy</strong> is a powerful interactive packet manipulation program written in Python. It allows you to create, send, receive, manipulate, and decode network packets. Scapy is widely used for network testing, protocol development, security assessments, and educational purposes. It supports a vast range of network protocols and provides a flexible framework for crafting custom packets.</p>
+            <p>With Scapy, users can easily forge packets, inject them into the network, capture responses, and analyze them in a simple and intuitive way. It is an essential tool for network administrators, security professionals, and anyone interested in network programming.</p>
+            <br>
+
+            <h2>Installation</h2>
+            <p>Scapy requires Python and some dependencies to function properly. Below are the installation steps for different platforms.</p>
+
+            <h3>Linux Installation (Ubuntu/Debian):</h3>
+            <code>sudo apt update && sudo apt install python3-pip</code>
+            <br>
+            <code>sudo pip3 install scapy</code>
+            <p>Alternatively, you can install Scapy using the package manager:</p>
+            <code>sudo apt install scapy</code>
+            <br><br>
+
+            <h3>macOS Installation:</h3>
+            <code>brew install scapy</code>
+            <p>Note: This requires <a href="https://brew.sh/">Homebrew</a> to be installed.</p>
+            <p>Or install using pip:</p>
+            <code>pip3 install scapy</code>
+            <br>
+
+            <h3>Windows Installation:</h3>
+            <ol>
+                <li>Install Python 3 from the <a href="https://www.python.org/downloads/windows/">official website</a>.</li>
+                <li>Open Command Prompt and install Scapy:</li>
+                <code>pip install scapy</code>
+                <li>Ensure that dependencies like WinPcap or Npcap are installed for packet capturing.</li>
+            </ol>
+            <br>
+
+            <h2>Basic Usage of Scapy</h2>
+            <p>Scapy can be used interactively via the Python interpreter or by writing Python scripts. Root or sudo privileges are often required to send and capture packets.</p>
+
+            <h3>Starting Scapy</h3>
+            <p>To start Scapy in interactive mode, open a terminal and type:</p>
+            <code>sudo scapy</code>
+            <p>You will be greeted with the Scapy prompt:</p>
+            <code>&gt;&gt;&gt;</code>
+            <br>
+
+            <h3>Creating and Sending a Packet</h3>
+            <p>To create a simple ICMP (ping) packet and send it:</p>
+            <pre><code>
+packet = IP(dst="8.8.8.8")/ICMP()
+send(packet)
+            </code></pre>
+            <p>This constructs an IP packet with destination 8.8.8.8 (Google DNS) and adds an ICMP layer. The <code>send()</code> function transmits the packet.</p>
+            <br>
+
+            <h3>Sniffing Network Traffic</h3>
+            <p>To capture network packets:</p>
+            <pre><code>
+packets = sniff(count=10)
+packets.summary()
+            </code></pre>
+            <p>This captures 10 packets and displays a summary of them.</p>
+            <br>
+
+            <h3>Displaying Packet Details</h3>
+            <p>To inspect a captured packet:</p>
+            <pre><code>
+packet = packets[0]
+packet.show()
+            </code></pre>
+            <p>This displays all the fields and layers of the first captured packet.</p>
+            <br>
+
+            <h2>Advanced Scapy Techniques</h2>
+
+            <h3>Packet Manipulation and Crafting</h3>
+            <p>Scapy allows you to craft packets with specific fields:</p>
+            <pre><code>
+packet = IP(dst="example.com", ttl=64)/TCP(dport=80, flags="S")
+send(packet)
+            </code></pre>
+            <p>This sends a TCP SYN packet to port 80 of <code>example.com</code> with a TTL of 64.</p>
+            <br>
+
+            <h3>ARP Spoofing</h3>
+            <p>To perform ARP spoofing (for educational purposes only):</p>
+            <pre><code>
+from scapy.all import *
+target_ip = "192.168.1.5"
+gateway_ip = "192.168.1.1"
+packet = ARP(op=2, pdst=target_ip, psrc=gateway_ip, hwdst="ff:ff:ff:ff:ff:ff")
+send(packet, loop=1, inter=2)
+            </code></pre>
+            <p>This sends ARP replies to the target, associating the gateway IP with your MAC address.</p>
+            <p><strong>Warning:</strong> ARP spoofing is illegal and unethical if performed without proper authorization.</p>
+            <br>
+
+            <h3>DNS Query</h3>
+            <p>To send a DNS query for a specific domain:</p>
+            <pre><code>
+packet = IP(dst="8.8.8.8")/UDP()/DNS(rd=1, qd=DNSQR(qname="example.com"))
+response = sr1(packet)
+response.show()
+            </code></pre>
+            <p>This sends a DNS query to Google's DNS server and displays the response.</p>
+            <br>
+
+            <h3>Handling Responses</h3>
+            <p>To send a packet and receive a response:</p>
+            <pre><code>
+packet = IP(dst="8.8.8.8")/ICMP()
+response = sr1(packet)
+if response:
+    print("Received reply from", response.src)
+            </code></pre>
+            <br>
+
+            <h2>Use Cases of Scapy</h2>
+            <ul>
+                <li><strong>Network Testing</strong>: Test the behavior of network devices and protocols by crafting custom packets.</li>
+                <li><strong>Security Research</strong>: Analyze vulnerabilities, test IDS/IPS systems, and simulate attacks in a controlled environment.</li>
+                <li><strong>Protocol Development</strong>: Develop and debug new network protocols.</li>
+                <li><strong>Education</strong>: Teach networking concepts and protocol structures.</li>
+                <li><strong>Packet Sniffing</strong>: Capture and analyze network traffic for troubleshooting.</li>
+            </ul>
+            <br>
+
+            <h2>Best Practices and Tips</h2>
+            <ul>
+                <li><strong>Use in a Controlled Environment</strong>: Always use Scapy in a lab or with proper authorization.</li>
+                <li><strong>Understand Protocols</strong>: Familiarity with network protocols helps in crafting effective packets.</li>
+                <li><strong>Python Proficiency</strong>: Since Scapy is Python-based, understanding Python enhances your ability to use Scapy effectively.</li>
+                <li><strong>Consult Documentation</strong>: Scapy has extensive documentation and examples; refer to them for advanced usage.</li>
+                <li><strong>Handle Permissions</strong>: Running Scapy with root privileges can be risky; ensure your system is secure.</li>
+            </ul>
+            <br>
+
+            <h2>Common Scapy Functions Summary</h2>
+            <table>
+                <tr>
+                    <th>Function</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td><code>IP()</code></td>
+                    <td>Create an IP packet</td>
+                </tr>
+                <tr>
+                    <td><code>TCP()</code></td>
+                    <td>Create a TCP layer</td>
+                </tr>
+                <tr>
+                    <td><code>UDP()</code></td>
+                    <td>Create a UDP layer</td>
+                </tr>
+                <tr>
+                    <td><code>ICMP()</code></td>
+                    <td>Create an ICMP layer</td>
+                </tr>
+                <tr>
+                    <td><code>send()</code></td>
+                    <td>Send packets at Layer 3</td>
+                </tr>
+                <tr>
+                    <td><code>sendp()</code></td>
+                    <td>Send packets at Layer 2</td>
+                </tr>
+                <tr>
+                    <td><code>sr1()</code></td>
+                    <td>Send packets and receive one response</td>
+                </tr>
+                <tr>
+                    <td><code>sniff()</code></td>
+                    <td>Capture network packets</td>
+                </tr>
+                <tr>
+                    <td><code>hexdump()</code></td>
+                    <td>Display packet contents in hexadecimal</td>
+                </tr>
+                <tr>
+                    <td><code>wrpcap()</code></td>
+                    <td>Write packets to a pcap file</td>
+                </tr>
+                <tr>
+                    <td><code>rdpcap()</code></td>
+                    <td>Read packets from a pcap file</td>
+                </tr>
+            </table>
+            <br>
+
+            <h2>Legal and Ethical Considerations</h2>
+            <p>Scapy is a powerful tool that can manipulate network traffic. Unauthorized use of Scapy to interfere with networks or devices is illegal and unethical. Always ensure you have explicit permission to perform network tests and activities. Use Scapy responsibly and in compliance with all applicable laws and organizational policies.</p>
+            <br>
+
+
+            <h2>Additional Resources</h2>
+            <ul>
+                <li><a href="https://scapy.net/">Scapy Official Website</a></li>
+                <li><a href="https://scapy.readthedocs.io/en/latest/">Scapy Documentation</a></li>
+                <li><a href="https://github.com/secdev/scapy">Scapy GitHub Repository</a></li>
+                <li><a href="https://asciinema.org/a/33598">Scapy Interactive Demo</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Cykitool Library made by Students4Cyber. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
