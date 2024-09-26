@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Tools - hping3</title>
+    <link rel="stylesheet" href="../styles/tools.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="../scripts/list-script.js"></script>
+</head>
+
+<body>
+    <header id="networkContainer" class="category-header">
+        <div class="container">
+            <div class="category-name">
+                <h1><a href="network.html">Network</a></h1>
+                <p><a href="../home.html">Home</a></p>
+            </div>
+            <div class="tool-info">
+                <img src="../images/hping3.svg" alt="hping3 Logo" class="tool-logo">
+                <h2>hping3</h2>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="tools-list-container-network"></div>
+
+        <section class="tool-description">
+            <h2>About hping3</h2>
+            <p><strong>hping3</strong> is an open-source packet generator and analyzer for the TCP/IP protocol. It is used for network testing, firewall testing, advanced port scanning, and many other tasks. hping3 allows users to craft custom TCP/IP packets and analyze network responses, making it an essential tool for network administrators and security professionals.</p>
+            <p>Unlike the traditional <code>ping</code> command, which uses ICMP echo requests, hping3 supports TCP, UDP, ICMP, and RAW-IP protocols, giving users more flexibility in how they interact with network devices.</p>
+            <br>
+
+            <h2>Installation</h2>
+            <p>hping3 is available for Unix-like operating systems, including Linux and macOS. Below are the installation steps for common platforms.</p>
+
+            <h3>Linux Installation (Ubuntu/Debian):</h3>
+            <code>sudo apt update && sudo apt install hping3</code>
+            <br><br>
+
+            <h3>macOS Installation:</h3>
+            <code>brew install hping</code>
+            <p>Note: This requires <a href="https://brew.sh/">Homebrew</a> to be installed on your macOS.</p>
+            <br>
+
+            <h2>Basic Usage of hping3</h2>
+            <p>hping3 is a command-line tool that typically requires root or sudo privileges to send and receive custom network packets.</p>
+
+            <h3>Performing a Basic Ping with TCP</h3>
+            <p>To send TCP SYN packets to port 80 of a target host:</p>
+            <code>sudo hping3 -S -p 80 &lt;target_ip&gt;</code>
+            <p>This sends TCP SYN packets to port 80 and waits for replies, similar to how <code>ping</code> works with ICMP.</p>
+            <br>
+
+            <h3>Sending ICMP Echo Requests</h3>
+            <p>To perform a traditional ICMP ping:</p>
+            <code>sudo hping3 &lt;target_ip&gt; --icmp</code>
+            <br>
+
+            <h3>UDP Scan on a Specific Port</h3>
+            <p>To send UDP packets to a specific port:</p>
+            <code>sudo hping3 &lt;target_ip&gt; --udp -p 53</code>
+            <p>This sends UDP packets to port 53, which is commonly used for DNS services.</p>
+            <br>
+
+            <h3>Setting Packet Rate and Count</h3>
+            <p>To send a specific number of packets at a defined rate:</p>
+            <code>sudo hping3 &lt;target_ip&gt; -i u1000 -c 10</code>
+            <p>This sends 10 packets (<code>-c 10</code>) at a rate of one packet every 1000 microseconds (<code>-i u1000</code>), i.e., 1000 packets per second.</p>
+            <br>
+
+            <h2>Advanced hping3 Techniques</h2>
+
+            <h3>Firewall Testing</h3>
+            <p>hping3 can be used to test firewall rules by sending packets with specific flags and observing the responses.</p>
+            <p>For example, to send TCP ACK packets to port 80:</p>
+            <code>sudo hping3 -A -p 80 &lt;target_ip&gt;</code>
+            <br>
+
+            <h3>Traceroute with hping3</h3>
+            <p>To perform a traceroute using TCP packets:</p>
+            <code>sudo hping3 --traceroute -V -S -p 80 &lt;target_ip&gt;</code>
+            <p>This traces the route to the target using TCP SYN packets to port 80.</p>
+            <br>
+
+            <h3>Simulating a Specific Operating System</h3>
+            <p>To set the TTL (Time To Live) and window size to match a specific OS:</p>
+            <code>sudo hping3 &lt;target_ip&gt; -S -p 80 --ttl 128 --win 65535</code>
+            <p>This can be used to simulate packets from a Windows machine.</p>
+            <br>
+
+            <h3>Sending Files Over Network</h3>
+            <p>hping3 can send files by fragmenting them into packets:</p>
+            <code>sudo hping3 &lt;target_ip&gt; -E file.txt --sign signature</code>
+            <p>Note: This is an advanced usage and requires a corresponding hping3 listener to reassemble the data.</p>
+            <br>
+
+            <h2>Use Cases of hping3</h2>
+            <ul>
+                <li><strong>Network Testing</strong>: Measure network performance, latency, and packet loss.</li>
+                <li><strong>Firewall Auditing</strong>: Test firewall rules and intrusion detection systems (IDS) by sending crafted packets.</li>
+                <li><strong>Advanced Traceroute</strong>: Perform traceroute operations using TCP, UDP, or ICMP with more control over packet parameters.</li>
+                <li><strong>Protocol Analysis</strong>: Analyze how different network protocols respond under various conditions.</li>
+                <li><strong>Security Assessments</strong>: Identify potential vulnerabilities in network configurations.</li>
+            </ul>
+            <br>
+
+            <h2>Best Practices and Tips</h2>
+            <ul>
+                <li><strong>Use Responsibly</strong>: Only use hping3 on networks and systems for which you have explicit permission to test.</li>
+                <li><strong>Understand Legal Implications</strong>: Unauthorized network scanning or packet crafting can be illegal and unethical.</li>
+                <li><strong>Start with Basic Commands</strong>: If you're new to hping3, begin with simple commands to familiarize yourself with its functionality.</li>
+                <li><strong>Combine with Other Tools</strong>: Use hping3 alongside tools like Wireshark for comprehensive network analysis.</li>
+                <li><strong>Refer to Official Documentation</strong>: hping3 has extensive documentation that can help you understand advanced features.</li>
+            </ul>
+            <br>
+
+            <h2>Common hping3 Options Summary</h2>
+            <table>
+                <tr>
+                    <th>Option</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td><code>-S</code></td>
+                    <td>Set SYN flag</td>
+                </tr>
+                <tr>
+                    <td><code>-A</code></td>
+                    <td>Set ACK flag</td>
+                </tr>
+                <tr>
+                    <td><code>--udp</code></td>
+                    <td>Use UDP mode</td>
+                </tr>
+                <tr>
+                    <td><code>--icmp</code></td>
+                    <td>Use ICMP mode</td>
+                </tr>
+                <tr>
+                    <td><code>-p &lt;port&gt;</code></td>
+                    <td>Set destination port</td>
+                </tr>
+                <tr>
+                    <td><code>-i &lt;interval&gt;</code></td>
+                    <td>Packet send interval (e.g., <code>-i u1000</code> for 1000 microseconds)</td>
+                </tr>
+                <tr>
+                    <td><code>-c &lt;count&gt;</code></td>
+                    <td>Stop after sending (and receiving) a certain number of packets</td>
+                </tr>
+                <tr>
+                    <td><code>--traceroute</code></td>
+                    <td>Enable traceroute mode</td>
+                </tr>
+                <tr>
+                    <td><code>-E &lt;file&gt;</code></td>
+                    <td>Send data from a file</td>
+                </tr>
+                <tr>
+                    <td><code>--sign &lt;text&gt;</code></td>
+                    <td>Add a signature to outgoing packets</td>
+                </tr>
+                <tr>
+                    <td><code>--ttl &lt;value&gt;</code></td>
+                    <td>Set Time To Live value</td>
+                </tr>
+                <tr>
+                    <td><code>--win &lt;size&gt;</code></td>
+                    <td>Set TCP window size</td>
+                </tr>
+            </table>
+            <br>
+
+            <h2>Legal and Ethical Considerations</h2>
+            <p>hping3 is a powerful tool that can generate custom network traffic. It is crucial to use hping3 responsibly and ethically. Unauthorized use of hping3 to scan networks or send crafted packets can lead to legal consequences and disrupt network services. Always ensure you have explicit permission to perform network tests and comply with all applicable laws and organizational policies.</p>
+            <br>
+
+
+            <h2>Additional Resources</h2>
+            <ul>
+                <li><a href="http://www.hping.org/documentation.php">hping3 Official Documentation</a></li>
+                <li><a href="http://www.hping.org/">hping.org Official Website</a></li>
+                <li><a href="https://linux.die.net/man/8/hping3">hping3 Manual Page</a></li>
+                <li><a href="https://www.offensive-security.com/metasploit-unleashed/hping3/">hping3 Tutorial by Offensive Security</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Cykitool Library made by Students4Cyber. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
