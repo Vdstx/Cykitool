@@ -14,19 +14,19 @@ body {
 }
 
 #cryptoContainer{
-    background-color: #f5efe6;
+    background-color: #F5EEE6;
 }
 
 #webContainer{
-    background-color: #D5CABC;
+    background-color: #FFF8E3;
 }
 
 #networkContainer{
-    background-color: #E8D5CC;
+    background-color: #F3D7CA;
 }
 
 #forensicsContainer{
-    background-color: #BDA18A;
+    background-color: #E6A4B4;
 }
 
 header.category-header {
