@@ -183,6 +183,10 @@ main.container {
     text-align: center;
 }
 
+.tool-description table td code{
+    text-align: left;
+}
+
 
 footer {
     background-color: #bee5ec;
