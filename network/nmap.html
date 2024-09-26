@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Tools - Nmap</title>
+    <link rel="stylesheet" href="../styles/tools.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="../scripts/list-script.js"></script>
+</head>
+
+<body>
+    <header id="networkContainer" class="category-header">
+        <div class="container">
+            <div class="category-name">
+                <h1><a href="network.html">Network</a></h1>
+                <p><a href="../home.html">Home</a></p>
+            </div>
+            <div class="tool-info">
+                <img src="../images/nmap.png" alt="Nmap Logo" class="tool-logo">
+                <h2>Nmap</h2>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="tools-list-container-network"></div>
+
+        <section class="tool-description">
+            <h2>About Nmap</h2>
+            <p><strong>Nmap</strong> (Network Mapper) is a powerful open-source tool used for network discovery and security auditing. It allows users to scan networks to discover hosts, services, operating systems, and vulnerabilities. Nmap is essential for network administrators, security professionals, and ethical hackers to understand the topology of networks and to identify potential security risks.</p>
+            <p>Nmap supports various scanning techniques like TCP SYN scans, UDP scans, and OS detection. It can handle large networks with thousands of machines and provides detailed information about each scanned host.</p>
+            <br>
+
+            <h2>Installation</h2>
+            <p>Nmap is available for multiple platforms, including Windows, macOS, and Linux. Below are the installation steps for common operating systems.</p>
+
+            <h3>Linux Installation (Ubuntu/Debian):</h3>
+            <code>sudo apt update && sudo apt install nmap</code>
+            <br><br>
+
+            <h3>macOS Installation:</h3>
+            <code>brew install nmap</code>
+            <p>Note: This requires <a href="https://brew.sh/">Homebrew</a> to be installed on your macOS.</p>
+            <br>
+
+            <h3>Windows Installation:</h3>
+            <ol>
+                <li>Download the installer from the official site: <a href="https://nmap.org/download.html#windows">Nmap Downloads</a>.</li>
+                <li>Run the installer and follow the on-screen instructions.</li>
+                <li>Optionally, install the <strong>Zenmap</strong> GUI if you prefer a graphical interface.</li>
+            </ol>
+            <br>
+
+            <h2>Basic Usage of Nmap</h2>
+            <p>Nmap is primarily used through the command line. Below are some common commands and their explanations.</p>
+
+            <h3>Scanning a Single Host</h3>
+            <p>To scan a single IP address or hostname:</p>
+            <code>nmap 192.168.1.1</code>
+            <p>This command performs a default scan on the target, checking for the most common 1000 TCP ports.</p>
+            <br>
+
+            <h3>Scanning Multiple Hosts</h3>
+            <p>You can scan a range of IP addresses:</p>
+            <code>nmap 192.168.1.1-254</code>
+            <p>Or scan a subnet:</p>
+            <code>nmap 192.168.1.0/24</code>
+            <br>
+
+            <h3>Scanning Specific Ports</h3>
+            <p>To scan specific ports, use the <code>-p</code> option:</p>
+            <code>nmap -p 80,443 192.168.1.1</code>
+            <p>This command scans only ports 80 and 443 on the target host.</p>
+            <br>
+
+            <h3>Service and Version Detection</h3>
+            <p>To detect the services and their versions running on open ports:</p>
+            <code>nmap -sV 192.168.1.1</code>
+            <p>This performs version detection to provide more detailed information about services.</p>
+            <br>
+
+            <h3>Operating System Detection</h3>
+            <p>Nmap can attempt to identify the operating system of the target:</p>
+            <code>nmap -O 192.168.1.1</code>
+            <p>Combining OS detection with service detection:</p>
+            <code>nmap -A 192.168.1.1</code>
+            <p>The <code>-A</code> option enables OS detection, version detection, script scanning, and traceroute.</p>
+            <br>
+
+            <h2>Advanced Nmap Techniques</h2>
+
+            <h3>Stealth Scan (SYN Scan)</h3>
+            <p>The SYN scan is the default scan type and is less likely to be logged by target systems:</p>
+            <code>nmap -sS 192.168.1.1</code>
+            <br>
+
+            <h3>UDP Scan</h3>
+            <p>To scan UDP ports (which can be slower due to the nature of UDP):</p>
+            <code>nmap -sU 192.168.1.1</code>
+            <br>
+
+            <h3>Ping Sweep</h3>
+            <p>To discover which hosts are up in a network:</p>
+            <code>nmap -sn 192.168.1.0/24</code>
+            <p>This disables port scanning and only checks if hosts are up.</p>
+            <br>
+
+            <h3>Using Nmap Scripts (NSE)</h3>
+            <p>Nmap has a scripting engine that allows for advanced tasks like vulnerability detection:</p>
+            <code>nmap --script vuln 192.168.1.1</code>
+            <p>This runs scripts that check for vulnerabilities on the target.</p>
+            <br>
+
+            <h3>Output Options</h3>
+            <p>To save the scan results to a file:</p>
+            <code>nmap -oN output.txt 192.168.1.1</code>
+            <p>For XML output:</p>
+            <code>nmap -oX output.xml 192.168.1.1</code>
+            <br>
+
+            <h2>Examples of Nmap Usage</h2>
+
+            <h3>Detecting Open Ports and Services</h3>
+            <p>Scanning a host to find open ports and running services:</p>
+            <code>nmap -sV 192.168.1.1</code>
+            <p>This helps identify services that may need to be secured or updated.</p>
+            <br>
+
+            <h3>Checking for Vulnerabilities</h3>
+            <p>Using NSE scripts to detect vulnerabilities:</p>
+            <code>nmap --script vuln 192.168.1.1</code>
+            <p>This can highlight known vulnerabilities associated with services running on the target.</p>
+            <br>
+
+            <h3>Firewall Evasion Techniques</h3>
+            <p>Nmap offers options to evade firewalls or IDS:</p>
+            <code>nmap -D RND:10 192.168.1.1</code>
+            <p>The <code>-D</code> option performs a decoy scan to obscure the source of the scan.</p>
+            <br>
+
+            <h3>Timing Options</h3>
+            <p>Adjust scan speed to be faster or more stealthy:</p>
+            <code>nmap -T4 192.168.1.1</code>
+            <p>The timing template ranges from <code>T0</code> (slowest) to <code>T5</code> (fastest).</p>
+            <br>
+
+            <h2>Use Cases of Nmap</h2>
+            <ul>
+                <li><strong>Network Inventory</strong>: Discover devices and services on a network for asset management.</li>
+                <li><strong>Security Auditing</strong>: Identify open ports and services that could be potential entry points for attackers.</li>
+                <li><strong>Vulnerability Detection</strong>: Use NSE scripts to find vulnerabilities in network services.</li>
+                <li><strong>Compliance Testing</strong>: Ensure that networks meet security standards by verifying closed ports and disabled services.</li>
+                <li><strong>Performance Testing</strong>: Assess how network devices handle high traffic or scan loads.</li>
+            </ul>
+            <br>
+
+            <h2>Best Practices and Tips</h2>
+            <ul>
+                <li><strong>Permission</strong>: Always have authorization before scanning networks to avoid legal issues.</li>
+                <li><strong>Update Nmap Regularly</strong>: Ensure you have the latest version and script updates for accurate results.</li>
+                <li><strong>Use Specific Scans</strong>: Tailor your scans to your needs to reduce noise and scan time.</li>
+                <li><strong>Combine Tools</strong>: Use Nmap in conjunction with other tools like Wireshark for comprehensive analysis.</li>
+                <li><strong>Read the Documentation</strong>: Nmap has extensive documentation and tutorials available at <a href="https://nmap.org/docs.html">Nmap Documentation</a>.</li>
+            </ul>
+            <br>
+
+            <h2>Common Nmap Options Summary</h2>
+            <table>
+                <tr>
+                    <th>Option</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td><code>-sS</code></td>
+                    <td>SYN scan (stealth scan)</td>
+                </tr>
+                <tr>
+                    <td><code>-sU</code></td>
+                    <td>UDP scan</td>
+                </tr>
+                <tr>
+                    <td><code>-sV</code></td>
+                    <td>Service/version detection</td>
+                </tr>
+                <tr>
+                    <td><code>-O</code></td>
+                    <td>Operating system detection</td>
+                </tr>
+                <tr>
+                    <td><code>-A</code></td>
+                    <td>Enables OS detection, version detection, script scanning, and traceroute</td>
+                </tr>
+                <tr>
+                    <td><code>-p</code></td>
+                    <td>Specify ports to scan</td>
+                </tr>
+                <tr>
+                    <td><code>-T</code></td>
+                    <td>Set timing template (0-5)</td>
+                </tr>
+                <tr>
+                    <td><code>-D</code></td>
+                    <td>Decoy scan</td>
+                </tr>
+                <tr>
+                    <td><code>--script</code></td>
+                    <td>Specify NSE scripts to run</td>
+                </tr>
+                <tr>
+                    <td><code>-oN/-oX</code></td>
+                    <td>Output scan results to file (normal/XML)</td>
+                </tr>
+            </table>
+            <br>
+
+            <h2>Additional Resources</h2>
+            <ul>
+                <li><a href="https://nmap.org/book/man.html">Nmap Manual</a></li>
+                <li><a href="https://nmap.org/book/nse.html">Nmap Scripting Engine (NSE)</a></li>
+                <li><a href="https://nmap.org/movies.html">Nmap Video Tutorials</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Cykitool Library made by Students4Cyber. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

@@ -176,6 +176,14 @@ main.container {
 }
 
 
+.tool-description table th{
+    text-align: center;
+}
+.tool-description table td{
+    text-align: center;
+}
+
+
 footer {
     background-color: #bee5ec;
     color: #fff;
