@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Tools - Masscan</title>
+    <link rel="stylesheet" href="../styles/tools.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="../scripts/list-script.js"></script>
+</head>
+
+<body>
+    <header id="networkContainer" class="category-header">
+        <div class="container">
+            <div class="category-name">
+                <h1><a href="network.html">Network</a></h1>
+                <p><a href="../home.html">Home</a></p>
+            </div>
+            <div class="tool-info">
+                <img src="../images/masscan.svg" alt="Masscan Logo" class="tool-logo">
+                <h2>Masscan</h2>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="tools-list-container-network"></div>
+
+        <section class="tool-description">
+            <h2>About Masscan</h2>
+            <p><strong>Masscan</strong> is a high-speed port scanner that can scan the entire Internet in a matter of minutes. It is similar to Nmap but optimized for speed and efficiency, making it capable of scanning over 10 million packets per second. Masscan is useful for network administrators and security professionals who need to perform large-scale port scans for network inventory, security assessments, and research purposes.</p>
+            <p>Masscan uses asynchronous transmission to achieve its speed and can perform both TCP SYN scans and banner grabbing. Due to its powerful capabilities, it should be used responsibly and ethically.</p>
+            <br>
+
+            <h2>Installation</h2>
+            <p>Masscan is available for Linux and can be compiled from source. Below are the installation steps for common platforms.</p>
+
+            <h3>Linux Installation (Ubuntu/Debian):</h3>
+            <ol>
+                <li>Install the required dependencies:</li>
+                <code>sudo apt update && sudo apt install git gcc make libpcap-dev</code>
+                <br>
+                <li>Clone the Masscan repository:</li>
+                <code>git clone https://github.com/robertdavidgraham/masscan</code>
+                <br>
+                <li>Navigate to the Masscan directory:</li>
+                <code>cd masscan</code>
+                <br>
+                <li>Compile Masscan:</li>
+                <code>make</code>
+                <br>
+                <li>Optionally, install Masscan system-wide:</li>
+                <code>sudo make install</code>
+            </ol>
+            <br>
+
+            <h3>macOS Installation:</h3>
+            <ol>
+                <li>Install Xcode command-line tools:</li>
+                <code>xcode-select --install</code>
+                <br>
+                <li>Install Homebrew if not already installed:</li>
+                <code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code>
+                <br>
+                <li>Install Masscan using Homebrew:</li>
+                <code>brew install masscan</code>
+            </ol>
+            <br>
+
+            <h2>Basic Usage of Masscan</h2>
+            <p>Masscan requires root or sudo privileges to send raw packets. Below are some basic commands and examples.</p>
+
+            <h3>Scanning a Single IP Address</h3>
+            <p>To scan a single IP address on a specific port:</p>
+            <code>sudo masscan 192.168.1.1 -p80</code>
+            <p>This scans port 80 on the IP address 192.168.1.1.</p>
+            <br>
+
+            <h3>Scanning an IP Range</h3>
+            <p>To scan a range of IP addresses on specific ports:</p>
+            <code>sudo masscan 192.168.1.0/24 -p80,443,22</code>
+            <p>This scans ports 80, 443, and 22 on the subnet 192.168.1.0/24.</p>
+            <br>
+
+            <h3>Scanning the Entire Internet</h3>
+            <p>To perform a wide-scale scan (use with caution and proper authorization):</p>
+            <code>sudo masscan 0.0.0.0/0 -p80 --rate=100000</code>
+            <p>This scans port 80 on all IPv4 addresses at a rate of 100,000 packets per second.</p>
+            <br>
+
+            <h3>Adjusting the Scan Rate</h3>
+            <p>To modify the packet transmission rate:</p>
+            <code>sudo masscan 192.168.1.0/24 -p80 --rate=1000</code>
+            <p>This sets the rate to 1,000 packets per second.</p>
+            <br>
+
+            <h2>Advanced Masscan Techniques</h2>
+
+            <h3>Output Options</h3>
+            <p>To save the scan results to a file:</p>
+            <code>sudo masscan 192.168.1.0/24 -p80 -oX scan_results.xml</code>
+            <p>This saves the output in XML format.</p>
+            <br>
+
+            <h3>Excluding IP Addresses</h3>
+            <p>To exclude specific IP addresses or ranges from the scan:</p>
+            <code>sudo masscan 192.168.1.0/24 -p80 --excludefile exclude.txt</code>
+            <p>Create an <code>exclude.txt</code> file with IP addresses or ranges to exclude.</p>
+            <br>
+
+            <h3>Using Custom Source IP and Port</h3>
+            <p>To specify a source IP address and port:</p>
+            <code>sudo masscan 192.168.1.0/24 -p80 --source-ip 192.168.1.100 --source-port 60000</code>
+            <br>
+
+            <h3>Banner Grabbing</h3>
+            <p>Masscan can perform banner grabbing to retrieve service information:</p>
+            <code>sudo masscan 192.168.1.0/24 -p80 --banners</code>
+            <p>This attempts to grab banners from services running on port 80.</p>
+            <br>
+
+            <h2>Use Cases of Masscan</h2>
+            <ul>
+                <li><strong>Network Inventory</strong>: Quickly identify active hosts and open ports on large networks.</li>
+                <li><strong>Security Assessments</strong>: Detect potential vulnerabilities by identifying services exposed on the network.</li>
+                <li><strong>Research and Analysis</strong>: Collect data on Internet-wide services for research purposes.</li>
+                <li><strong>Compliance Auditing</strong>: Verify that unauthorized services are not running on the network.</li>
+                <li><strong>Monitoring Changes</strong>: Track changes in network services over time.</li>
+            </ul>
+            <br>
+
+            <h2>Best Practices and Tips</h2>
+            <ul>
+                <li><strong>Use Responsibly</strong>: Masscan can generate significant network traffic; use it responsibly and with permission.</li>
+                <li><strong>Avoid Scanning the Entire Internet Without Authorization</strong>: Unauthorized scanning can lead to legal issues and network abuse complaints.</li>
+                <li><strong>Adjust Scan Rate Carefully</strong>: High scan rates can overwhelm networks and systems; start with lower rates.</li>
+                <li><strong>Whitelist Your IP</strong>: If scanning within an organization, ensure your scanning IP is whitelisted in intrusion detection systems.</li>
+                <li><strong>Combine with Nmap</strong>: Use Masscan for initial discovery and Nmap for detailed scanning of specific targets.</li>
+            </ul>
+            <br>
+
+            <h2>Common Masscan Options Summary</h2>
+            <table>
+                <tr>
+                    <th>Option</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td><code>-p &lt;ports&gt;</code></td>
+                    <td>Specify ports to scan (e.g., <code>-p80,443</code>)</td>
+                </tr>
+                <tr>
+                    <td><code>--rate &lt;number&gt;</code></td>
+                    <td>Set the packet transmission rate (packets per second)</td>
+                </tr>
+                <tr>
+                    <td><code>-oX &lt;file&gt;</code></td>
+                    <td>Output results in XML format to a file</td>
+                </tr>
+                <tr>
+                    <td><code>-oG &lt;file&gt;</code></td>
+                    <td>Output results in Grepable format</td>
+                </tr>
+                <tr>
+                    <td><code>--excludefile &lt;file&gt;</code></td>
+                    <td>Exclude IP addresses or ranges listed in a file</td>
+                </tr>
+                <tr>
+                    <td><code>--source-ip &lt;ip&gt;</code></td>
+                    <td>Set the source IP address for packets</td>
+                </tr>
+                <tr>
+                    <td><code>--source-port &lt;port&gt;</code></td>
+                    <td>Set the source port for packets</td>
+                </tr>
+                <tr>
+                    <td><code>--banners</code></td>
+                    <td>Enable banner grabbing</td>
+                </tr>
+                <tr>
+                    <td><code>--interface &lt;iface&gt;</code></td>
+                    <td>Specify the network interface to use</td>
+                </tr>
+                <tr>
+                    <td><code>--ping</code></td>
+                    <td>Ping scan mode</td>
+                </tr>
+            </table>
+            <br>
+
+            <h2>Legal and Ethical Considerations</h2>
+            <p><strong>Important:</strong> Masscan can generate large volumes of network traffic and can be disruptive if used improperly. Unauthorized scanning of networks or IP addresses is illegal in many jurisdictions and can lead to serious legal consequences. Always ensure you have explicit permission from the network owner before conducting any scans. Use Masscan responsibly, ethically, and in compliance with all applicable laws and regulations.</p>
+            <br>
+
+            <h2>Additional Resources</h2>
+            <ul>
+                <li><a href="https://github.com/robertdavidgraham/masscan">Masscan GitHub Repository</a></li>
+                <li><a href="https://github.com/robertdavidgraham/masscan/blob/master/README.md">Masscan Documentation</a></li>
+                <li><a href="https://nmap.org/">Nmap Official Website</a></li>
+                <li><a href="https://nullsec.us/masscan-vs-nmap/">Comparison of Masscan and Nmap</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Cykitool Library made by Students4Cyber. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

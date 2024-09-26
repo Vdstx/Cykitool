@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Tools - ZMap</title>
+    <link rel="stylesheet" href="../styles/tools.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="../scripts/list-script.js"></script>
+</head>
+
+<body>
+    <header id="networkContainer" class="category-header">
+        <div class="container">
+            <div class="category-name">
+                <h1><a href="network.html">Network</a></h1>
+                <p><a href="../home.html">Home</a></p>
+            </div>
+            <div class="tool-info">
+                <img src="../images/zmap.png" alt="ZMap Logo" class="tool-logo">
+                <h2>ZMap</h2>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="tools-list-container-network"></div>
+
+        <section class="tool-description">
+            <h2>About ZMap</h2>
+            <p><strong>ZMap</strong> is an open-source network scanner designed for performing large-scale Internet-wide network surveys. It is capable of scanning the entire IPv4 address space in under an hour from a single machine. ZMap is optimized for speed and efficiency, utilizing asynchronous packet transmission and reception. It is widely used by researchers, security professionals, and network administrators for mapping the Internet, security assessments, and data analysis.</p>
+            <p>ZMap focuses on simplicity and speed, making it suitable for tasks that require high-performance scanning of large address spaces. Due to its powerful capabilities, it should be used responsibly and ethically.</p>
+            <br>
+
+            <h2>Installation</h2>
+            <p>ZMap is available for Linux and can be installed from repositories or compiled from source. Below are the installation steps for common platforms.</p>
+
+            <h3>Linux Installation (Ubuntu/Debian):</h3>
+            <ol>
+                <li>Install the required dependencies:</li>
+                <code>sudo apt update && sudo apt install git build-essential cmake libgmp-dev libpcap-dev gengetopt libjson-c-dev</code>
+                <br>
+                <li>Clone the ZMap repository:</li>
+                <code>git clone https://github.com/zmap/zmap.git</code>
+                <br>
+                <li>Navigate to the ZMap directory:</li>
+                <code>cd zmap</code>
+                <br>
+                <li>Compile ZMap:</li>
+                <code>mkdir build && cd build</code>
+                <br>
+                <code>cmake ..</code>
+                <br>
+                <code>make</code>
+                <br>
+                <li>Optionally, install ZMap system-wide:</li>
+                <code>sudo make install</code>
+            </ol>
+            <br>
+
+            <h3>macOS Installation:</h3>
+            <ol>
+                <li>Install Homebrew if not already installed:</li>
+                <code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code>
+                <br>
+                <li>Install ZMap using Homebrew:</li>
+                <code>brew install zmap</code>
+            </ol>
+            <br>
+
+            <h2>Basic Usage of ZMap</h2>
+            <p>ZMap requires root or sudo privileges to send raw packets. Below are some basic commands and examples.</p>
+
+            <h3>Scanning a Specific Port</h3>
+            <p>To scan the entire IPv4 address space for a specific port (e.g., port 80):</p>
+            <code>sudo zmap -p 80 -o results.csv</code>
+            <p>This scans port 80 on all IPv4 addresses and outputs the results to <code>results.csv</code>.</p>
+            <br>
+
+            <h3>Scanning a Specific IP Range</h3>
+            <p>To scan a specific CIDR block:</p>
+            <code>sudo zmap -p 443 192.168.1.0/24 -o results.csv</code>
+            <p>This scans port 443 on the subnet 192.168.1.0/24.</p>
+            <br>
+
+            <h3>Adjusting the Scan Rate</h3>
+            <p>To set the packet sending rate:</p>
+            <code>sudo zmap -p 22 --bandwidth=10M -o results.csv</code>
+            <p>This sets the bandwidth to 10 Megabits per second.</p>
+            <br>
+
+            <h3>Scanning Multiple Ports</h3>
+            <p>To scan multiple ports:</p>
+            <code>sudo zmap -p 80,443,22 -o results.csv</code>
+            <br>
+
+            <h2>Advanced ZMap Techniques</h2>
+
+            <h3>Specifying Blacklists</h3>
+            <p>ZMap uses a default blacklist to exclude certain IP ranges (e.g., private IP addresses, multicast addresses). You can specify your own blacklist:</p>
+            <code>sudo zmap -p 80 --blacklist-file=blacklist.conf -o results.csv</code>
+            <p>Create a <code>blacklist.conf</code> file with IP addresses or ranges to exclude.</p>
+            <br>
+
+            <h3>Using Whitelists</h3>
+            <p>To scan only specific IP addresses or ranges:</p>
+            <code>sudo zmap -p 80 --whitelist-file=whitelist.conf -o results.csv</code>
+            <p>Create a <code>whitelist.conf</code> file with IP addresses or ranges to include.</p>
+            <br>
+
+            <h3>Banner Grabbing with ZGrab</h3>
+            <p>ZMap can be used in conjunction with <a href="https://github.com/zmap/zgrab">ZGrab</a> to perform application-layer handshakes and grab banners:</p>
+            <code>sudo zmap -p 443 -o - | zgrab --port 443 --tls</code>
+            <p>This scans port 443 and uses ZGrab to perform TLS handshakes.</p>
+            <br>
+
+            <h3>Saving Scan Metadata</h3>
+            <p>To include metadata in the output:</p>
+            <code>sudo zmap -p 80 -o results.csv --metadata-file=metadata.json</code>
+            <br>
+
+            <h2>Use Cases of ZMap</h2>
+            <ul>
+                <li><strong>Internet-wide Scanning</strong>: Map services running on the Internet for research and analysis.</li>
+                <li><strong>Security Assessments</strong>: Identify exposed services and potential vulnerabilities on a large scale.</li>
+                <li><strong>Data Collection</strong>: Gather data for studies on network protocols, security trends, and Internet topology.</li>
+                <li><strong>Monitoring and Compliance</strong>: Ensure that unauthorized services are not running within an organization's IP space.</li>
+                <li><strong>Academic Research</strong>: Conduct experiments and validate hypotheses in network science.</li>
+            </ul>
+            <br>
+
+            <h2>Best Practices and Tips</h2>
+            <ul>
+                <li><strong>Use Responsibly and Legally</strong>: Obtain proper authorization before scanning networks. Unauthorized scanning is illegal and unethical.</li>
+                <li><strong>Adjust Bandwidth Carefully</strong>: High scan rates can impact network performance. Start with lower bandwidth settings.</li>
+                <li><strong>Respect Blacklists</strong>: Use blacklists to avoid scanning sensitive or prohibited IP ranges.</li>
+                <li><strong>Analyze Results Securely</strong>: Handle collected data responsibly, respecting privacy and data protection laws.</li>
+                <li><strong>Combine with ZGrab</strong>: Use ZGrab for application-layer data collection after initial scanning with ZMap.</li>
+            </ul>
+            <br>
+
+            <h2>Common ZMap Options Summary</h2>
+            <table>
+                <tr>
+                    <th>Option</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td><code>-p &lt;ports&gt;</code></td>
+                    <td>Specify ports to scan (e.g., <code>-p 80,443</code>)</td>
+                </tr>
+                <tr>
+                    <td><code>-o &lt;file&gt;</code></td>
+                    <td>Output results to a file</td>
+                </tr>
+                <tr>
+                    <td><code>--bandwidth=&lt;bandwidth&gt;</code></td>
+                    <td>Set maximum bandwidth (e.g., <code>--bandwidth=10M</code>)</td>
+                </tr>
+                <tr>
+                    <td><code>--blacklist-file=&lt;file&gt;</code></td>
+                    <td>Specify a blacklist file to exclude IPs</td>
+                </tr>
+                <tr>
+                    <td><code>--whitelist-file=&lt;file&gt;</code></td>
+                    <td>Specify a whitelist file to include IPs</td>
+                </tr>
+                <tr>
+                    <td><code>--max-targets=&lt;number&gt;</code></td>
+                    <td>Limit the number of targets to scan</td>
+                </tr>
+                <tr>
+                    <td><code>--probe-args=&lt;args&gt;</code></td>
+                    <td>Specify probe arguments for custom probes</td>
+                </tr>
+                <tr>
+                    <td><code>--interface=&lt;iface&gt;</code></td>
+                    <td>Specify the network interface to use</td>
+                </tr>
+                <tr>
+                    <td><code>--source-port=&lt;port&gt;</code></td>
+                    <td>Set the source port for packets</td>
+                </tr>
+                <tr>
+                    <td><code>--metadata-file=&lt;file&gt;</code></td>
+                    <td>Save scan metadata to a file</td>
+                </tr>
+            </table>
+            <br>
+
+            <h2>Legal and Ethical Considerations</h2>
+            <p><strong>Important:</strong> ZMap is a powerful tool capable of scanning vast portions of the Internet. Unauthorized scanning can be illegal and unethical. Always obtain explicit permission from network owners before conducting scans. Be aware of and comply with all applicable laws, regulations, and organizational policies. Use ZMap responsibly to avoid potential legal issues and negative impacts on network operations.</p>
+            <br>
+
+            <h2>Additional Resources</h2>
+            <ul>
+                <li><a href="https://zmap.io/">ZMap Official Website</a></li>
+                <li><a href="https://github.com/zmap/zmap">ZMap GitHub Repository</a></li>
+                <li><a href="https://zmap.io/documentation.html">ZMap Documentation</a></li>
+                <li><a href="https://zmap.io/paper.pdf">ZMap Research Paper</a></li>
+                <li><a href="https://github.com/zmap/zgrab">ZGrab GitHub Repository</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Cykitool Library made by Students4Cyber. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
