@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Cryptography Tools - Tool Description</title>
+    <link rel="stylesheet" href="../styles/tools.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="../scripts/list-script.js"></script>
+</head>
+
+<body>
+    <header id="cryptoContainer" class="category-header">
+        <div class="container">
+            <div class="category-name">
+                <h1><a href="cryptography.html">Cryptography</a></h1>
+                <p><a href="../home.html">Home</a></p>
+            </div>
+            <div class="tool-info">
+                <img src="../images/gnu.png" alt="Tool Logo" class="tool-logo">
+                <h2>GnuPG</h2>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="tools-list-container"></div>
+
+        <section class="tool-description">
+            <h2>About GnuPG</h2>
+            <p><strong>GnuPG</strong> (Gnu Privacy Guard) is a free and open-source encryption tool that implements the OpenPGP standard. It is widely used for encrypting and signing data and communications. GnuPG is a vital tool for anyone concerned with privacy, allowing for secure email exchanges and file encryption. It uses a combination of symmetric-key and public-key cryptography to safeguard information, and it supports a variety of encryption algorithms such as RSA and AES. GnuPG is favored for its reliability and is a critical component in many security infrastructures.</p>
+            <br>
+
+            <h2>Installation</h2>
+            <p>Linux installation</p>
+            <code>sudo apt install gnupg</code>
+            <br>
+            <br>
+            <p>Alternatively, you can compile from source:</p>
+            <code>git clone https://gnupg.org/download/<br>
+                cd gnupg<br>
+                ./configure<br>
+                make<br>
+                sudo make install</code>
+            <br>
+            <br>
+
+            <h2>Examples of GnuPG Usage</h2>
+            <p>Generating a new key pair:</p>
+            <code>gpg --full-generate-key</code>
+            <br>
+            <br>
+            <ul>
+                <li>This will prompt you to choose encryption options such as key type, key size, and expiration date.</li>
+            </ul>
+
+            <p>Encrypting a file:</p>
+            <code>gpg --output encrypted_file.gpg --encrypt --recipient recipient@example.com file.txt</code>
+            <br>
+            <br>
+            <ul>
+                <li><strong>--output</strong>: Specifies the name of the encrypted file.</li>
+                <li><strong>--encrypt</strong>: Command to encrypt the file.</li>
+                <li><strong>--recipient</strong>: Specifies the recipient's public key.</li>
+            </ul>
+
+            <p>Decrypting a file:</p>
+            <code>gpg --output decrypted_file.txt --decrypt encrypted_file.gpg</code>
+            <br>
+            <br>
+            <ul>
+                <li><strong>--output</strong>: Specifies the name of the decrypted file.</li>
+                <li><strong>--decrypt</strong>: Command to decrypt the file using your private key.</li>
+            </ul>
+
+            <p>Signing a file:</p>
+            <code>gpg --output signed_file.gpg --sign file.txt</code>
+            <br>
+            <br>
+            <ul>
+                <li><strong>--sign</strong>: Creates a digital signature for the file.</li>
+            </ul>
+
+            <h2>Useful Options</h2>
+            <ul>
+                <li><code>--armor</code>: Outputs ASCII armored encrypted files for easy readability.</li>
+                <li><code>--list-keys</code>: Lists all public keys in your keyring.</li>
+                <li><code>--list-secret-keys</code>: Lists all private keys in your keyring.</li>
+                <li><code>--import</code>: Imports a public or private key from a file.</li>
+                <li><code>--export</code>: Exports a public key for sharing.</li>
+                <li><code>--trust-model</code>: Specifies the trust model for key verification.</li>
+                <li><code>--symmetric</code>: Encrypts a file using a symmetric cipher (password-based encryption).</li>
+            </ul>
+
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Cykitool Library. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

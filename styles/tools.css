@@ -167,6 +167,15 @@ main.container {
     font-size: 1.1rem;
 }
 
+.tool-description ol{
+    padding-left:5%;
+    color:#555;
+    text-decoration: none;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+
 footer {
     background-color: #222;
     color: #fff;
