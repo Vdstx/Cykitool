@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Cryptography Tools - Tool Description</title>
+    <link rel="stylesheet" href="../styles/tools.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="../scripts/list-script.js"></script>
+</head>
+
+<body>
+    <header id="cryptoContainer" class="category-header">
+        <div class="container">
+            <div class="category-name">
+                <h1><a href="cryptography.html">Cryptography</a></h1>
+                <p><a href="../home.html">Home</a></p>
+            </div>
+            <div class="tool-info">
+                <img src="../images/RsaCtfTool.png" alt="Tool Logo" class="tool-logo">
+                <h2>RsaCtfTool</h2>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="tools-list-container"></div>
+
+        <section class="tool-description">
+            <h2>About RsaCtfTool</h2>
+            <p><strong>RsaCtfTool</strong> is a Python-based tool designed to help in the exploitation and solving of RSA-based cryptographic challenges. It is widely used in Capture The Flag (CTF) competitions and for educational purposes in cryptanalysis. The tool is capable of factoring large integers, finding private keys, and decrypting ciphertexts using common vulnerabilities found in RSA implementations, such as small public exponents or faulty key generation processes.</p>
+            <br>
+
+            <h2>Installation</h2>
+            <p>Linux installation using pip:</p>
+            <code>pip install git+https://github.com/Ganapati/RsaCtfTool</code>
+            <br>
+            <br>
+            <p>Alternatively, you can clone the repository and install dependencies:</p>
+            <code>git clone https://github.com/Ganapati/RsaCtfTool<br>
+                cd RsaCtfTool<br>
+                pip install -r requirements.txt</code>
+            <br>
+            <br>
+
+            <h2>Examples of RsaCtfTool Usage</h2>
+            <p>Decrypt ciphertext with private key:</p>
+            <code>python3 RsaCtfTool.py --private --key private_key.pem --uncipherfile ciphertext.enc</code>
+            <br>
+            <br>
+            <ul>
+                <li><strong>--private</strong>: Specifies the use of a private key for decryption.</li>
+                <li><strong>--key</strong>: Path to the private key file.</li>
+                <li><strong>--uncipherfile</strong>: The encrypted file to decrypt.</li>
+            </ul>
+
+            <p>Cracking RSA when given <strong>n</strong> and <strong>e</strong> (public key parameters):</p>
+            <code>python3 RsaCtfTool.py --publickey public_key.pem --attack all</code>
+            <br>
+            <br>
+            <ul>
+                <li><strong>--publickey</strong>: Path to the public key file.</li>
+                <li><strong>--attack</strong>: Runs multiple attacks (like factorization, Wiener's attack, etc.) to try and retrieve the private key.</li>
+            </ul>
+
+            <p>Using RsaCtfTool for small exponent attack (common in CTFs with small <strong>e</strong> values):</p>
+            <code>python3 RsaCtfTool.py --publickey public_key.pem --attack cube_root</code>
+            <br>
+            <br>
+            <ul>
+                <li><strong>cube_root</strong>: Specific attack for small <em>e</em> values (e.g., 3).</li>
+            </ul>
+
+            <p>Factoring a large modulus <strong>n</strong> to retrieve private keys:</p>
+            <code>python3 RsaCtfTool.py --publickey public_key.pem --attack factordb</code>
+            <br>
+            <br>
+            <ul>
+                <li><strong>factordb</strong>: Leverages the Factordb.com database to find the factors of the modulus.</li>
+            </ul>
+
+            <h2>Common RSA Vulnerabilities</h2>
+            <ul>
+                <li><code>Small public exponent</code>: RSA implementations using small public exponents (e.g., e=3) can be vulnerable to attacks like cube-root attacks if the ciphertext is small.</li>
+                <li><code>Common modulus</code>: When two different public keys share the same modulus <strong>n</strong> but different exponents, it is possible to recover the private key using the Extended GCD algorithm.</li>
+                <li><code>Wiener's attack</code>: When the private exponent <strong>d</strong> is too small, Wiener's attack can recover the private key.</li>
+                <li><code>Factorable modulus</code>: If <strong>n</strong> (modulus) is a product of small prime numbers, factoring algorithms can retrieve the primes and, consequently, the private key.</li>
+            </ul>
+
+            <h2>Useful Options</h2>
+            <ul>
+                <li><code>--publickey</code>: Specify the public key file to be used in attacks.</li>
+                <li><code>--private</code>: Specify the private key file for decryption.</li>
+                <li><code>--attack</code>: Run specific or multiple attacks to recover private keys or decrypt ciphertexts.</li>
+                <li><code>--uncipher</code>: Specify the file to decrypt using the provided private key.</li>
+                <li><code>--createpub</code>: Create a public key from modulus and exponent values.</li>
+                <li><code>--dumpkey</code>: Dumps information about a public or private key.</li>
+                <li><code>-v</code>: Enable verbose mode for detailed output.</li>
+            </ul>
+
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Cykitool Library. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

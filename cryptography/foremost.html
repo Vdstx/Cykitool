@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Cryptography Tools - Tool Description</title>
+    <link rel="stylesheet" href="../styles/tools.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="../scripts/list-script.js"></script>
+</head>
+
+<body>
+    <header id="cryptoContainer" class="category-header">
+        <div class="container">
+            <div class="category-name">
+                <h1><a href="forensics.html">Forensics</a></h1>
+                <p><a href="../home.html">Home</a></p>
+            </div>
+            <div class="tool-info">
+                <img src="../images/foremost.png" alt="Tool Logo" class="tool-logo">
+                <h2>Foremost</h2>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="tools-list-container"></div>
+
+        <section class="tool-description">
+            <h2>About Foremost</h2>
+            <p><strong>Foremost</strong> is a forensic data recovery tool used to recover files based on their headers, footers, and internal data structures. It was originally developed by the United States Air Force and is now widely used by cybersecurity professionals for file carving during digital forensics investigations. Foremost works on disk images, memory dumps, or any raw data to extract files of various types, such as images, documents, executables, and more.</p>
+            <br>
+
+            <h2>Installation</h2>
+            <p>Linux installation</p>
+            <code>sudo apt install foremost</code>
+            <br>
+            <br>
+            <p>Alternatively, you can build from source:</p>
+            <code>git clone https://github.com/kfairbanks/foremost<br>
+                cd foremost<br>
+                make<br>
+                sudo make install</code>
+            <br>
+            <br>
+
+            <h2>Examples of Foremost Usage</h2>
+            <p>Basic file recovery:</p>
+            <code>foremost -i disk_image.dd -o /recovery_directory/</code>
+            <br>
+            <br>
+            <ul>
+                <li><strong>-i</strong>: Specifies the input file (a disk image in this case).</li>
+                <li><strong>-o</strong>: Specifies the output directory where recovered files will be saved.</li>
+            </ul>
+
+            <p>Recovering specific file types (e.g., JPEG images):</p>
+            <code>foremost -t jpg -i disk_image.dd -o /recovery_directory/</code>
+            <br>
+            <br>
+            <ul>
+                <li><strong>-t</strong>: Specifies the file type to recover (e.g., jpg for JPEG files).</li>
+                <li><strong>-i</strong>: Specifies the input file (disk image).</li>
+                <li><strong>-o</strong>: Specifies the output directory for recovered files.</li>
+            </ul>
+
+            <p>Running Foremost with a configuration file:</p>
+            <code>foremost -c foremost.conf -i disk_image.dd -o /recovery_directory/</code>
+            <br>
+            <br>
+            <ul>
+                <li><strong>-c</strong>: Specifies a custom configuration file to define file carving parameters.</li>
+            </ul>
+
+            <h2>Useful Options</h2>
+            <ul>
+                <li><code>-v</code>: Enables verbose mode for detailed output during file recovery.</li>
+                <li><code>-Q</code>: Quick mode, which skips header/footer integrity checks for faster recovery.</li>
+                <li><code>-t</code>: Specifies the file types to carve (e.g., jpg, pdf, exe).</li>
+                <li><code>-c</code>: Use a custom configuration file.</li>
+                <li><code>-s</code>: Skip a specified number of bytes at the beginning of the input file.</li>
+                <li><code>-T</code>: Enables thorough mode to attempt recovery of fragmented files.</li>
+            </ul>
+
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Cykitool Library. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
