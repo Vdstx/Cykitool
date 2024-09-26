@@ -9,3 +9,9 @@ fetch('tools-list-forensics.html')
     .then(data => {
         document.getElementById('tools-list-container-forensics').innerHTML = data;
     });
+
+fetch('tools-list-network.html')
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById('tools-list-container-network').innerHTML = data;
+    });

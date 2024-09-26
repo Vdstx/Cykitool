@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Network Tools - Tool Description</title>
+    <link rel="stylesheet" href="../styles/tools.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="../scripts/list-script.js"></script>
+</head>
+
+<body>
+    <header id="networkContainer" class="category-header">
+        <div class="container">
+            <div class="category-name">
+                <h1><a href="network.html">Network</a></h1>
+                <p><a href="../home.html">Home</a></p>
+            </div>
+            <div class="tool-info">
+                <img src="../images/wireshark.png" alt="Tool Logo" class="tool-logo">
+                <h2>Wireshark</h2>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="tools-list-container-network"></div>
+
+        <section class="tool-description">
+            <h2>About Wireshark</h2>
+            <p><strong>Wireshark</strong> is one of the most widely used network protocol analyzers in the world. It is an open-source tool that captures network traffic in real-time, allowing security professionals, network administrators, and ethical hackers to inspect data packets in detail. Wireshark supports hundreds of network protocols and is essential for troubleshooting, monitoring, and understanding what is happening inside a network.</p>
+            <p>Wireshark can capture traffic on different interfaces (Ethernet, Wi-Fi, etc.) and helps analyze issues such as latency, packet loss, security threats, and misconfigurations. It also decodes encrypted traffic in certain conditions, providing a comprehensive view of network activity.</p>
+            <br>
+
+            <h2>Installation</h2>
+            <p>Wireshark is available for multiple platforms (Windows, macOS, Linux). Installation is simple, and it requires appropriate permissions (administrator/root) to capture network traffic.</p>
+
+            <h3>Linux installation (Ubuntu/Debian):</h3>
+            <code>sudo apt update && sudo apt install wireshark</code>
+            <br>
+            <br>
+            <h3>Windows installation:</h3>
+            <ol>
+                <li>Download the installer from the official site: <a href="https://www.wireshark.org/download.html">Wireshark Downloads</a>.</li>
+                <li>Run the installer and select the necessary options, including installation of <strong>WinPcap</strong> (for packet capturing).</li>
+                <li>Launch Wireshark and select a network interface to start capturing traffic.</li>
+            </ol>
+
+            <h2>Examples of Wireshark Usage</h2>
+            <h3>Capturing Network Traffic</h3>
+            <p>To start capturing network traffic:</p>
+            <ol>
+                <li>Open Wireshark and choose the network interface (e.g., Ethernet, Wi-Fi).</li>
+                <li>Click on the green "Start Capturing" button.</li>
+                <li>Wireshark will now display all the network traffic passing through the chosen interface.</li>
+            </ol>
+            <p>While capturing, Wireshark organizes the traffic into a table, with each row representing a single packet. It provides details such as the packet number, time, source, destination, protocol, length, and information about the packet.</p>
+            <br>
+
+            <h3>Filtering Packets</h3>
+            <p>Wireshark can capture thousands of packets in seconds, but using filters helps narrow down relevant data. Here are some useful filters:</p>
+            <ul>
+                <li><code>ip.addr == 192.168.1.1</code>: Capture packets sent from or to a specific IP address.</li>
+                <li><code>tcp.port == 80</code>: Capture HTTP traffic (which uses port 80 by default).</li>
+                <li><code>dns</code>: Filter only DNS-related traffic.</li>
+                <li><code>http.request</code>: Show only HTTP requests, excluding responses.</li>
+                <li><code>tls</code>: Capture TLS-encrypted traffic (formerly known as SSL).</li>
+            </ul>
+
+            <h3>Packet Analysis Example</h3>
+            <p>Once a packet is selected, the details are displayed in three sections:</p>
+            <ul>
+                <li><strong>Packet List</strong>: A summary of all captured packets in chronological order.</li>
+                <li><strong>Packet Details</strong>: The contents of the selected packet, broken down by protocol layers (Ethernet, IP, TCP/UDP, etc.).</li>
+                <li><strong>Packet Bytes</strong>: A raw hexadecimal view of the packet’s data.</li>
+            </ul>
+
+            <p>For example, in an HTTP packet, you can inspect headers such as the request method (GET, POST), URL, and status codes (200 OK, 404 Not Found). In a TCP packet, you can see details about the connection, like the sequence number and flags (SYN, ACK, FIN).</p>
+            <br>
+
+            <h3>Analyzing Encrypted Traffic</h3>
+            <p>Wireshark can decrypt SSL/TLS traffic under certain conditions if you have access to the server’s private key or use session keys exported from browsers. To decrypt TLS traffic:</p>
+            <ol>
+                <li>Go to <strong>Edit</strong> &gt; <strong>Preferences</strong> &gt; <strong>Protocols</strong> &gt; <strong>TLS</strong>.</li>
+                <li>Specify the location of the server’s private key (for HTTPS decryption) or the session key log file (for browser session keys).</li>
+                <li>Wireshark will automatically decrypt the traffic and display the decoded packets.</li>
+            </ol>
+
+            <h2>Use Cases of Wireshark</h2>
+            <ul>
+                <li><strong>Network Troubleshooting</strong>: Identify issues such as packet loss, high latency, and network congestion.</li>
+                <li><strong>Security Analysis</strong>: Detect malicious activities, man-in-the-middle attacks, or traffic anomalies.</li>
+                <li><strong>Protocol Analysis</strong>: Understand how various protocols (HTTP, FTP, DNS, DHCP, etc.) function in real-time network traffic.</li>
+                <li><strong>Performance Monitoring</strong>: Analyze bandwidth usage, data flow between devices, and optimize network performance.</li>
+                <li><strong>Forensics</strong>: In the event of a security breach, Wireshark captures can help reconstruct and analyze what happened on the network.</li>
+            </ul>
+
+            <h2>Advanced Wireshark Features</h2>
+            <ul>
+                <li><code>Coloring Rules</code>: Wireshark allows you to assign colors to different packet types (e.g., HTTP, DNS, ARP) to make the analysis easier.</li>
+                <li><code>Follow TCP Stream</code>: Rebuilds a conversation from the individual TCP packets, allowing you to see the complete communication (e.g., HTTP requests and responses).</li>
+                <li><code>IO Graphs</code>: Graph network traffic over time to visually identify spikes in usage or packet drops.</li>
+                <li><code>Packet Reassembly</code>: Wireshark can reassemble fragmented packets to display complete data streams, especially useful for protocols like HTTP and FTP.</li>
+                <li><code>Exporting Packets</code>: Export packet captures in various formats, including .pcap and .csv, for further analysis or sharing.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Cykitool Library made by Students4Cyber. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
