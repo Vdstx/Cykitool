@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Tools - tcpdump</title>
+    <link rel="stylesheet" href="../styles/tools.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="../scripts/list-script.js"></script>
+</head>
+
+<body>
+    <header id="networkContainer" class="category-header">
+        <div class="container">
+            <div class="category-name">
+                <h1><a href="network.html">Network</a></h1>
+                <p><a href="../home.html">Home</a></p>
+            </div>
+            <div class="tool-info">
+                <img src="../images/tcpdump.jpg" alt="tcpdump Logo" class="tool-logo">
+                <h2>tcpdump</h2>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="tools-list-container-network"></div>
+
+        <section class="tool-description">
+            <h2>About tcpdump</h2>
+            <p><strong>tcpdump</strong> is a powerful command-line packet analyzer tool used to capture and display network traffic passing through a computer's network interface. It allows users to intercept and display TCP/IP and other packets being transmitted or received over a network to which the computer is attached. tcpdump is essential for network troubleshooting, security analysis, and protocol development.</p>
+            <p>tcpdump provides the ability to filter network traffic according to various criteria, such as protocol, port, source or destination address, and more, making it a flexible tool for analyzing network issues.</p>
+            <br>
+
+            <h2>Installation</h2>
+            <p>tcpdump is commonly available on Unix-like operating systems, including Linux and macOS. Below are installation steps for different platforms.</p>
+
+            <h3>Linux Installation (Ubuntu/Debian):</h3>
+            <code>sudo apt update && sudo apt install tcpdump</code>
+            <br><br>
+
+            <h3>macOS Installation:</h3>
+            <code>brew install tcpdump</code>
+            <p>Note: This requires <a href="https://brew.sh/">Homebrew</a> to be installed on your macOS.</p>
+            <br>
+
+            <h2>Basic Usage of tcpdump</h2>
+            <p>tcpdump is used via the command line. Root or sudo privileges are typically required to capture packets.</p>
+
+            <h3>Capturing Packets on a Network Interface</h3>
+            <p>To start capturing packets on a specific network interface:</p>
+            <code>sudo tcpdump -i eth0</code>
+            <p>This captures all packets on the <code>eth0</code> interface.</p>
+            <br>
+
+            <h3>Filtering Traffic</h3>
+            <p>tcpdump uses <a href="https://www.tcpdump.org/manpages/pcap-filter.7.html">BPF (Berkeley Packet Filter)</a> syntax for filtering packets.</p>
+            <p>Examples:</p>
+            <ul>
+                <li><code>sudo tcpdump -i eth0 port 80</code>: Capture packets on port 80 (HTTP traffic).</li>
+                <li><code>sudo tcpdump -i eth0 host 192.168.1.1</code>: Capture packets to or from 192.168.1.1.</li>
+                <li><code>sudo tcpdump -i eth0 tcp</code>: Capture only TCP packets.</li>
+                <li><code>sudo tcpdump -i eth0 udp</code>: Capture only UDP packets.</li>
+            </ul>
+            <br>
+
+            <h3>Writing Capture to a File</h3>
+            <p>To save the captured packets to a file for later analysis:</p>
+            <code>sudo tcpdump -i eth0 -w capture.pcap</code>
+            <p>This writes the output to <code>capture.pcap</code>, which can be opened with tools like Wireshark.</p>
+            <br>
+
+            <h3>Reading from a Capture File</h3>
+            <p>To read and analyze packets from a saved capture file:</p>
+            <code>tcpdump -r capture.pcap</code>
+            <br>
+
+            <h3>Limiting the Number of Packets Captured</h3>
+            <p>To capture a specific number of packets:</p>
+            <code>sudo tcpdump -c 10 -i eth0</code>
+            <p>This captures only 10 packets.</p>
+            <br>
+
+            <h2>Examples of tcpdump Usage</h2>
+
+            <h3>Analyzing HTTP Traffic</h3>
+            <p>To capture and display HTTP requests and responses:</p>
+            <code>sudo tcpdump -i eth0 -A -s 0 'tcp port 80'</code>
+            <p>The <code>-A</code> option prints each packet in ASCII, and <code>-s 0</code> sets the snap length to capture the entire packet.</p>
+            <br>
+
+            <h3>Monitoring DNS Queries</h3>
+            <p>To capture DNS queries and responses:</p>
+            <code>sudo tcpdump -i eth0 port 53</code>
+            <br>
+
+            <h3>Capturing Only Incoming or Outgoing Traffic</h3>
+            <p>To capture only incoming traffic:</p>
+            <code>sudo tcpdump -i eth0 inbound</code>
+            <p>To capture only outgoing traffic:</p>
+            <code>sudo tcpdump -i eth0 outbound</code>
+            <br>
+
+            <h3>Filtering by Protocols</h3>
+            <p>To capture ICMP (ping) packets:</p>
+            <code>sudo tcpdump -i eth0 icmp</code>
+            <br>
+
+            <h3>Advanced Filtering</h3>
+            <p>To capture traffic between two hosts on a specific port:</p>
+            <code>sudo tcpdump -i eth0 host 192.168.1.1 and port 22</code>
+            <p>This captures SSH traffic to or from 192.168.1.1.</p>
+            <br>
+
+            <h2>Use Cases of tcpdump</h2>
+            <ul>
+                <li><strong>Network Troubleshooting</strong>: Identify network connectivity issues, packet loss, or latency problems.</li>
+                <li><strong>Security Analysis</strong>: Detect suspicious activities, such as unauthorized connections or malware communication.</li>
+                <li><strong>Protocol Debugging</strong>: Analyze custom protocols or applications by examining the packet-level data.</li>
+                <li><strong>Performance Monitoring</strong>: Measure network performance and bandwidth usage.</li>
+                <li><strong>Compliance Auditing</strong>: Monitor network traffic for compliance with security policies.</li>
+            </ul>
+            <br>
+
+            <h2>Best Practices and Tips</h2>
+            <ul>
+                <li><strong>Use Filters</strong>: Always apply filters to capture only the necessary traffic and reduce data volume.</li>
+                <li><strong>Run with Sudo</strong>: Root privileges are typically required; use <code>sudo</code> carefully.</li>
+                <li><strong>Limit Packet Size</strong>: Adjust the snap length (<code>-s</code>) to capture full packets or only headers as needed.</li>
+                <li><strong>Be Aware of Privacy</strong>: Captured data may contain sensitive information; handle capture files securely.</li>
+                <li><strong>Combine with Wireshark</strong>: Use tcpdump to capture packets on remote systems and analyze them with Wireshark locally.</li>
+            </ul>
+            <br>
+
+            <h2>Common tcpdump Options Summary</h2>
+            <table>
+                <tr>
+                    <th>Option</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td><code>-i &lt;interface&gt;</code></td>
+                    <td>Specify the network interface to capture on</td>
+                </tr>
+                <tr>
+                    <td><code>-w &lt;file&gt;</code></td>
+                    <td>Write the capture output to a file</td>
+                </tr>
+                <tr>
+                    <td><code>-r &lt;file&gt;</code></td>
+                    <td>Read packets from a file</td>
+                </tr>
+                <tr>
+                    <td><code>-c &lt;count&gt;</code></td>
+                    <td>Stop after capturing a number of packets</td>
+                </tr>
+                <tr>
+                    <td><code>-s &lt;snaplen&gt;</code></td>
+                    <td>Set the snapshot length; default is 262144 bytes</td>
+                </tr>
+                <tr>
+                    <td><code>-A</code></td>
+                    <td>Print packets in ASCII</td>
+                </tr>
+                <tr>
+                    <td><code>-X</code></td>
+                    <td>Print packets in both hex and ASCII</td>
+                </tr>
+                <tr>
+                    <td><code>-nn</code></td>
+                    <td>Do not resolve hostnames or port names</td>
+                </tr>
+                <tr>
+                    <td><code>-tttt</code></td>
+                    <td>Print an absolute timestamp with each line</td>
+                </tr>
+            </table>
+            <br>
+
+            <h2>Additional Resources</h2>
+            <ul>
+                <li><a href="https://www.tcpdump.org/manpages/tcpdump.1.html">tcpdump Manual Page</a></li>
+                <li><a href="https://danielmiessler.com/study/tcpdump/">tcpdump Tutorial by Daniel Miessler</a></li>
+                <li><a href="https://www.wireshark.org/docs/wsug_html_chunked/AppToolstcpdump.html">Using tcpdump and Wireshark Together</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Cykitool Library made by Students4Cyber. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
