@@ -81,7 +81,7 @@ header nav ul li a {
     border: 1px solid #ddd;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     text-align: center;
-    
+    border-radius: 5%;
 }
 
 .category h3 {
@@ -97,32 +97,35 @@ header nav ul li a {
 
 .btn {
     display: inline-block;
-    background-color: #83db5f;
+    background-color: #333;
     color: #fff;
     padding: 10px 20px;
     text-decoration: none;
     border-radius: 5px;
     transition: background-color 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .btn:hover {
     background-color: #bee5ec;
 }
 
+
+
 #crypto{
-    background-color: #f5efe6;
+    background-color: #F5EEE6;
 }
 
 #web{
-    background-color: #D5CABC;
+    background-color: #FFF8E3;
 }
 
 #network{
-    background-color: #E8D5CC;
+    background-color: #F3D7CA;
 }
 
 #forensics{
-    background-color:#BDA18A ;
+    background-color:#E6A4B4 ;
 }
 
 
