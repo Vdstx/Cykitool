@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Tools - Netcat</title>
+    <link rel="stylesheet" href="../styles/tools.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="../scripts/list-script.js"></script>
+</head>
+
+<body>
+    <header id="networkContainer" class="category-header">
+        <div class="container">
+            <div class="category-name">
+                <h1><a href="network.html">Network</a></h1>
+                <p><a href="../home.html">Home</a></p>
+            </div>
+            <div class="tool-info">
+                <img src="../images/netcat.svg" alt="Netcat Logo" class="tool-logo">
+                <h2>Netcat</h2>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="tools-list-container-network"></div>
+
+        <section class="tool-description">
+            <h2>About Netcat</h2>
+            <p><strong>Netcat</strong>, often referred to as the "Swiss Army Knife" of networking, is a versatile networking utility for reading from and writing to network connections using TCP or UDP protocols. It is a command-line tool that can establish connections, send data, listen on ports, and perform port scanning. Netcat is essential for network debugging, testing, and exploration.</p>
+            <p>Netcat can create various types of network connections and has built-in features such as port scanning, file transfers, and port listening. It is widely used by network administrators, security professionals, and ethical hackers for its flexibility and ease of use.</p>
+            <br>
+
+            <h2>Installation</h2>
+            <p>Netcat is available for most Unix-like operating systems, including Linux and macOS. There are also Windows versions available. Below are the installation steps for different platforms.</p>
+
+            <h3>Linux Installation (Ubuntu/Debian):</h3>
+            <p>There are two versions of Netcat commonly available: traditional <code>netcat-traditional</code> and OpenBSD's <code>netcat-openbsd</code>. The OpenBSD version is generally recommended as it supports additional features like IPv6 and Unix sockets.</p>
+
+            <h4>Installing netcat-openbsd:</h4>
+            <code>sudo apt update && sudo apt install netcat-openbsd</code>
+            <br><br>
+
+            <h4>Installing netcat-traditional:</h4>
+            <code>sudo apt update && sudo apt install netcat</code>
+            <br>
+            <br>
+
+            <h3>macOS Installation:</h3>
+            <code>brew install netcat</code>
+            <p>Note: This requires <a href="https://brew.sh/">Homebrew</a> to be installed on your macOS.</p>
+            <br>
+
+            <h3>Windows Installation:</h3>
+            <p>For Windows, you can download Netcat binaries:</p>
+            <ol>
+                <li>Download Netcat for Windows from a reputable source (e.g., <a href="https://joncraton.org/blog/46/netcat-for-windows/">Netcat for Windows</a>).</li>
+                <li>Extract the executable to a directory included in your system's PATH environment variable.</li>
+                <li>Open Command Prompt or PowerShell to use Netcat.</li>
+            </ol>
+            <br>
+
+            <h2>Basic Usage of Netcat</h2>
+            <p>Netcat is used via the command line and may require appropriate permissions to open ports below 1024 (root or sudo privileges).</p>
+
+            <h3>Creating a Simple Chat between Two Computers</h3>
+            <p>On the listening computer (server):</p>
+            <code>nc -l -p 1234</code>
+            <p>On the connecting computer (client):</p>
+            <code>nc &lt;server_ip&gt; 1234</code>
+            <p>Replace <code>&lt;server_ip&gt;</code> with the IP address of the listening computer.</p>
+            <br>
+
+            <h3>Transferring Files</h3>
+            <p>To send a file from one computer to another using Netcat.</p>
+            <p>On the receiving computer:</p>
+            <code>nc -l -p 1234 &gt; received_file.txt</code>
+            <p>On the sending computer:</p>
+            <code>nc &lt;receiver_ip&gt; 1234 &lt; file_to_send.txt</code>
+            <br>
+
+            <h3>Port Scanning</h3>
+            <p>Netcat can be used to scan for open ports on a target machine:</p>
+            <code>nc -z -v &lt;target_ip&gt; 20-80</code>
+            <p>This scans ports 20 to 80 on the target IP address.</p>
+            <br>
+
+            <h3>Setting Up a Simple Web Server</h3>
+            <p>Listen on port 8080 and serve HTTP responses:</p>
+            <code>while true; do echo -e "HTTP/1.1 200 OK\\n\\nHello, World!" | nc -l -p 8080; done</code>
+            <p>This will respond with "Hello, World!" to any HTTP request on port 8080.</p>
+            <br>
+
+            <h2>Advanced Netcat Techniques</h2>
+
+            <h3>Using Netcat with UDP</h3>
+            <p>Netcat supports UDP connections using the <code>-u</code> option.</p>
+            <p>Listening on UDP port 1234:</p>
+            <code>nc -u -l -p 1234</code>
+            <p>Sending data over UDP:</p>
+            <code>nc -u &lt;receiver_ip&gt; 1234</code>
+            <br>
+
+            <h3>Specifying Source Port and Interface</h3>
+            <p>To specify a source port and interface for outgoing connections:</p>
+            <code>nc -p 5555 -s &lt;source_ip&gt; &lt;destination_ip&gt; 1234</code>
+            <p>This sets the source port to 5555 and uses the specified source IP address.</p>
+            <br>
+
+            <h3>Port Forwarding</h3>
+            <p>Netcat can be used to forward ports locally.</p>
+            <p>Forwarding port 8080 to 80 on another host:</p>
+            <code>nc -l -p 8080 -c "nc &lt;destination_ip&gt; 80"</code>
+            <br>
+
+            <h2>Use Cases of Netcat</h2>
+            <ul>
+                <li><strong>Debugging and Testing</strong>: Test network services, send raw data to ports, and debug servers.</li>
+                <li><strong>File Transfers</strong>: Quickly transfer files between machines without setting up FTP or SCP.</li>
+                <li><strong>Port Scanning</strong>: Identify open ports on remote machines for security assessments.</li>
+                <li><strong>Port Forwarding</strong>: Redirect network traffic from one port to another.</li>
+                <li><strong>Simple Chat</strong>: Establish a basic chat session between two computers.</li>
+            </ul>
+            <br>
+
+            <h2>Best Practices and Tips</h2>
+            <ul>
+                <li><strong>Security Considerations</strong>: Use Netcat responsibly and avoid exposing your system to unauthorized access.</li>
+                <li><strong>Encryption</strong>: Netcat does not encrypt data. For secure communication, consider using tools like <code>ncat</code> with SSL/TLS support.</li>
+                <li><strong>Permissions</strong>: Running Netcat with elevated privileges can be risky. Limit permissions when possible.</li>
+                <li><strong>Scripting</strong>: Netcat can be used in scripts for automating network tasks.</li>
+                <li><strong>Alternative Tools</strong>: For enhanced features and security, consider using tools like <code>ncat</code> or <code>socat</code>.</li>
+            </ul>
+            <br>
+
+            <h2>Common Netcat Options Summary</h2>
+            <table>
+                <tr>
+                    <th>Option</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td><code>-l</code></td>
+                    <td>Listen mode for inbound connections</td>
+                </tr>
+                <tr>
+                    <td><code>-p &lt;port&gt;</code></td>
+                    <td>Specify the port number</td>
+                </tr>
+                <tr>
+                    <td><code>-e &lt;program&gt;</code></td>
+                    <td>Execute a program after connection (use with caution)</td>
+                </tr>
+                <tr>
+                    <td><code>-v</code></td>
+                    <td>Verbose output</td>
+                </tr>
+                <tr>
+                    <td><code>-z</code></td>
+                    <td>Zero-I/O mode (used for scanning)</td>
+                </tr>
+                <tr>
+                    <td><code>-u</code></td>
+                    <td>Use UDP instead of TCP</td>
+                </tr>
+                <tr>
+                    <td><code>-n</code></td>
+                    <td>Do not perform DNS lookup</td>
+                </tr>
+                <tr>
+                    <td><code>-w &lt;timeout&gt;</code></td>
+                    <td>Timeout for connects and final net reads</td>
+                </tr>
+                <tr>
+                    <td><code>-c &lt;command&gt;</code></td>
+                    <td>Execute a shell command (OpenBSD version)</td>
+                </tr>
+            </table>
+            <br>
+
+            <h2>Legal and Ethical Considerations</h2>
+            <p>Netcat is a powerful tool that should be used responsibly and ethically. It is crucial to use Netcat only on networks and systems for which you have explicit permission. Unauthorized use of Netcat to access or interfere with systems can lead to legal consequences. Always ensure that you comply with all applicable laws and organizational policies when using networking tools.</p>
+            <br>
+
+
+            <h2>Additional Resources</h2>
+            <ul>
+                <li><a href="http://netcat.sourceforge.net/">Official Netcat Page</a></li>
+                <li><a href="https://nc110.sourceforge.io/">Netcat 1.10 Manual</a></li>
+                <li><a href="https://nmap.org/ncat/">Ncat (from Nmap suite)</a></li>
+                <li><a href="https://www.gnu.org/software/netcat/">GNU Netcat</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Cykitool Library made by Students4Cyber. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

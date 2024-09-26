@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Tools - Dig</title>
+    <link rel="stylesheet" href="../styles/tools.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="../scripts/list-script.js"></script>
+</head>
+
+<body>
+    <header id="networkContainer" class="category-header">
+        <div class="container">
+            <div class="category-name">
+                <h1><a href="network.html">Network</a></h1>
+                <p><a href="../home.html">Home</a></p>
+            </div>
+            <div class="tool-info">
+                <img src="../images/dig.jpg" alt="Dig Logo" class="tool-logo">
+                <h2>Dig</h2>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="tools-list-container-network"></div>
+
+        <section class="tool-description">
+            <h2>About Dig</h2>
+            <p><strong>Dig</strong> (Domain Information Groper) is a powerful command-line tool used for querying Domain Name System (DNS) name servers. It performs DNS lookups and displays the answers that are returned from the name servers. Dig is essential for network administrators, system administrators, and cybersecurity professionals to troubleshoot DNS-related issues and to gather information about DNS records.</p>
+            <p>Dig supports a wide range of query types, including A, AAAA, MX, NS, TXT, and more. It provides detailed output that can help diagnose configuration problems, verify DNS settings, and analyze DNS responses.</p>
+            <br>
+
+            <h2>Installation</h2>
+            <p>Dig is part of the DNS utility package called <code>dnsutils</code> or <code>bind-utils</code>, depending on the operating system. Below are the installation steps for common platforms.</p>
+
+            <h3>Linux Installation (Ubuntu/Debian):</h3>
+            <code>sudo apt update && sudo apt install dnsutils</code>
+            <br><br>
+
+            <h3>CentOS/RHEL Installation:</h3>
+            <code>sudo yum install bind-utils</code>
+            <br><br>
+
+            <h3>macOS Installation:</h3>
+            <p>On macOS, Dig is typically included by default. If not, you can install it via Homebrew:</p>
+            <code>brew install bind</code>
+            <p>Note: This requires <a href="https://brew.sh/">Homebrew</a> to be installed.</p>
+            <br>
+
+            <h2>Basic Usage of Dig</h2>
+            <p>Dig is used via the command line and does not require elevated privileges.</p>
+
+            <h3>Performing a Simple DNS Lookup</h3>
+            <p>To query the A record (IPv4 address) of a domain:</p>
+            <code>dig example.com</code>
+            <p>This command queries the default DNS server configured on your system for the A record of <code>example.com</code>.</p>
+            <br>
+
+            <h3>Querying Specific DNS Record Types</h3>
+            <p>To query other types of DNS records, specify the record type:</p>
+            <code>dig example.com MX</code>
+            <p>This queries the MX (Mail Exchange) records for <code>example.com</code>.</p>
+            <br>
+
+            <h3>Using a Specific DNS Server</h3>
+            <p>To query a specific DNS server, use the <code>@</code> symbol:</p>
+            <code>dig @8.8.8.8 example.com</code>
+            <p>This queries Google's public DNS server (8.8.8.8) for the A record of <code>example.com</code>.</p>
+            <br>
+
+            <h3>Short Answer Output</h3>
+            <p>To get a concise answer, use the <code>+short</code> option:</p>
+            <code>dig example.com +short</code>
+            <p>This returns only the IP address(es) associated with <code>example.com</code>.</p>
+            <br>
+
+            <h2>Advanced Dig Techniques</h2>
+
+            <h3>Querying All DNS Record Types</h3>
+            <p>To retrieve all available DNS records for a domain:</p>
+            <code>dig example.com ANY</code>
+            <p>Note: Some DNS servers may not respond to ANY queries due to security policies.</p>
+            <br>
+
+            <h3>Performing a Reverse DNS Lookup</h3>
+            <p>To find the domain name associated with an IP address:</p>
+            <code>dig -x 93.184.216.34</code>
+            <p>This performs a reverse lookup on the IP address.</p>
+            <br>
+
+            <h3>Tracing the DNS Resolution Path</h3>
+            <p>To trace the path of a DNS query from the root servers down to the authoritative server:</p>
+            <code>dig example.com +trace</code>
+            <p>This helps identify where DNS resolution might be failing.</p>
+            <br>
+
+            <h3>Checking DNSSEC Information</h3>
+            <p>To display DNS Security Extensions (DNSSEC) information:</p>
+            <code>dig example.com +dnssec</code>
+            <p>This includes DNSSEC signatures in the output.</p>
+            <br>
+
+            <h3>Specifying Query Options</h3>
+            <p>To customize the query, use various flags:</p>
+            <code>dig example.com ANY +noall +answer</code>
+            <p>This displays only the answer section of the response.</p>
+            <br>
+
+            <h2>Use Cases of Dig</h2>
+            <ul>
+                <li><strong>DNS Troubleshooting</strong>: Identify DNS resolution issues, incorrect DNS records, or propagation delays.</li>
+                <li><strong>Domain Verification</strong>: Verify that DNS records are correctly set up for email services, web hosting, etc.</li>
+                <li><strong>Security Analysis</strong>: Gather DNS information during security assessments and penetration tests.</li>
+                <li><strong>Monitoring DNS Changes</strong>: Track changes in DNS records over time for auditing purposes.</li>
+                <li><strong>Reverse Engineering</strong>: Analyze the infrastructure of a domain by examining its DNS records.</li>
+            </ul>
+            <br>
+
+            <h2>Best Practices and Tips</h2>
+            <ul>
+                <li><strong>Use +short for Scripting</strong>: When using Dig in scripts, the <code>+short</code> option provides clean output that's easy to parse.</li>
+                <li><strong>Check from Multiple Locations</strong>: DNS responses can vary based on geographical location or DNS server used.</li>
+                <li><strong>Understand TTL Values</strong>: Time-To-Live values affect how long DNS records are cached; consider this when troubleshooting propagation issues.</li>
+                <li><strong>Use Specific Record Types</strong>: Specify the record type to reduce unnecessary information in the output.</li>
+                <li><strong>Be Aware of Cached Results</strong>: DNS queries may return cached data; use <code>+noall +answer</code> to focus on the answer section.</li>
+            </ul>
+            <br>
+
+            <h2>Common Dig Options Summary</h2>
+            <table>
+                <tr>
+                    <th>Option</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td><code>@&lt;server&gt;</code></td>
+                    <td>Specify the DNS server to query</td>
+                </tr>
+                <tr>
+                    <td><code>-x &lt;ip&gt;</code></td>
+                    <td>Perform a reverse DNS lookup on the IP address</td>
+                </tr>
+                <tr>
+                    <td><code>+short</code></td>
+                    <td>Display a shortened answer</td>
+                </tr>
+                <tr>
+                    <td><code>+trace</code></td>
+                    <td>Trace the delegation path from the root name servers</td>
+                </tr>
+                <tr>
+                    <td><code>+dnssec</code></td>
+                    <td>Include DNSSEC records in the query</td>
+                </tr>
+                <tr>
+                    <td><code>+noall</code></td>
+                    <td>Suppress all sections of the output</td>
+                </tr>
+                <tr>
+                    <td><code>+answer</code></td>
+                    <td>Display the answer section</td>
+                </tr>
+                <tr>
+                    <td><code>+stats</code></td>
+                    <td>Display statistics about the query</td>
+                </tr>
+                <tr>
+                    <td><code>-t &lt;type&gt;</code></td>
+                    <td>Specify the type of DNS record to query (e.g., A, MX, TXT)</td>
+                </tr>
+            </table>
+            <br>
+
+            <h2>Legal and Ethical Considerations</h2>
+            <p>Using Dig to query DNS records is generally acceptable and legal, as DNS information is publicly available. However, excessive querying or automated scraping of DNS data may violate acceptable use policies of DNS providers and could be considered abusive behavior. Always use Dig responsibly and respect the terms of service of DNS servers.</p>
+            <br>
+
+
+            <h2>Additional Resources</h2>
+            <ul>
+                <li><a href="https://linux.die.net/man/1/dig">Dig Manual Page</a></li>
+                <li><a href="https://www.dnsimple.com/support/dig/">How to Use Dig</a></li>
+                <li><a href="https://tools.ietf.org/html/rfc1035">RFC 1035 - Domain Names - Implementation and Specification</a></li>
+                <li><a href="https://www.ietf.org/rfc/rfc4033.txt">RFC 4033 - DNS Security Introduction and Requirements</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Cykitool Library made by Students4Cyber. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

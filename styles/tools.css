@@ -175,16 +175,8 @@ main.container {
     font-size: 1.1rem;
 }
 
-
 .tool-description table th{
     text-align: center;
-}
-.tool-description table td{
-    text-align: center;
-}
-
-.tool-description table td code{
-    text-align: left;
 }
 
 
