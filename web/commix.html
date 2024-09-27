@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Tools - Commix</title>
+    <link rel="stylesheet" href="../styles/tools.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="../scripts/list-script.js"></script>
+</head>
+
+<body>
+    <header id="webContainer" class="category-header">
+        <div class="container">
+            <div class="category-name">
+                <h1><a href="web.html">Web</a></h1>
+                <p><a href="../index.html">Home</a></p>
+            </div>
+            <div class="tool-info">
+                <img src="../images/commix.png" alt="Commix Logo" class="tool-logo">
+                <h2>Commix</h2>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="tools-list-container-web"></div>
+
+        <section class="tool-description">
+            <h2>About Commix</h2>
+            <p><strong>Commix</strong> (short for [comm]and [i]njection e[x]ploiter) is an open-source penetration testing tool that automates the process of detecting and exploiting command injection vulnerabilities in web applications. It is designed to help security professionals and researchers test web applications for vulnerabilities related to command injection attacks.</p>
+            <br>
+
+            <h2>Installation</h2>
+            <p>Commix is written in Python and supports both Python 2 and Python 3. You can install it by cloning the repository from GitHub:</p>
+            <code>
+                git clone https://github.com/commixproject/commix.git<br>
+                cd commix<br>
+                sudo python setup.py install
+            </code>
+            <br>
+            <p>Alternatively, you can run Commix directly without installation:</p>
+            <code>
+                python commix.py [options]
+            </code>
+            <br>
+
+            <h2>Examples of Commix Usage</h2>
+            <p><strong>Basic Command Injection Testing:</strong></p>
+            <code>
+                python commix.py --url="http://example.com/vulnerable.php?id=1"
+            </code>
+            <br>
+            <ul>
+                <li><strong>--url</strong>: Specifies the target URL to test for command injection.</li>
+            </ul>
+
+            <p><strong>Providing Data via POST Method:</strong></p>
+            <code>
+                python commix.py --url="http://example.com/login.php" --data="username=admin&password=admin"
+            </code>
+            <br>
+            <ul>
+                <li><strong>--data</strong>: Specifies data to be sent via POST request.</li>
+            </ul>
+
+            <p><strong>Setting a Custom User-Agent:</strong></p>
+            <code>
+                python commix.py --url="http://example.com/" --user-agent="Mozilla/5.0"
+            </code>
+            <br>
+
+            <p><strong>Using Tor Network:</strong></p>
+            <code>
+                python commix.py --url="http://example.com/" --tor
+            </code>
+            <br>
+            <ul>
+                <li><strong>--tor</strong>: Routes traffic through the Tor network for anonymity.</li>
+            </ul>
+
+            <p><strong>Enumerating System Information:</strong></p>
+            <code>
+                python commix.py --url="http://example.com/vuln.php?id=1" --sys-info
+            </code>
+            <br>
+            <ul>
+                <li><strong>--sys-info</strong>: Retrieves system information from the target.</li>
+            </ul>
+
+            <h2>Useful Options</h2>
+            <p>Commix offers a wide range of options to customize the testing process. Here are some of the most commonly used options categorized for better understanding:</p>
+
+            <h3>General Options</h3>
+            <ul>
+                <li><code>-h, --help</code>: Show the help message and exit.</li>
+                <li><code>-v VERBOSE</code>: Set verbosity level (0-4). Default is 0.</li>
+                <li><code>--version</code>: Show the program's version number and exit.</li>
+                <li><code>--update</code>: Check for updates and apply if any are available.</li>
+                <li><code>--batch</code>: Run in non-interactive mode using default options.</li>
+            </ul>
+
+            <h3>Target Options</h3>
+            <ul>
+                <li><code>-u URL, --url=URL</code>: Specify the target URL.</li>
+                <li><code>-r REQUESTFILE</code>: Load HTTP request from a file.</li>
+                <li><code>-d DATA, --data=DATA</code>: Data string to be sent through POST.</li>
+                <li><code>--method=METHOD</code>: Force the usage of a specific HTTP method (e.g., GET, POST).</li>
+            </ul>
+
+            <h3>Request Options</h3>
+            <ul>
+                <li><code>--user-agent=AGENT</code>: Specify a custom User-Agent header.</li>
+                <li><code>--random-agent</code>: Use a randomly selected User-Agent header.</li>
+                <li><code>--cookie=COOKIE</code>: Specify HTTP Cookie header.</li>
+                <li><code>--proxy=PROXY</code>: Use a proxy to connect to the target URL (e.g., http://127.0.0.1:8080).</li>
+                <li><code>--tor</code>: Use the Tor network for anonymity.</li>
+                <li><code>--auth-cred=AUTH_CRED</code>: HTTP authentication credentials (e.g., "admin:admin").</li>
+            </ul>
+
+            <h3>Injection Options</h3>
+            <ul>
+                <li><code>-p TEST_PARAMETER</code>: Specify parameter(s) to test for injection.</li>
+                <li><code>--suffix=SUFFIX</code>: Injection payload suffix string.</li>
+                <li><code>--prefix=PREFIX</code>: Injection payload prefix string.</li>
+                <li><code>--technique=TECH</code>: Specify injection techniques to use (e.g., classic, time-based).</li>
+                <li><code>--os-cmd=OS_CMD</code>: Execute a single OS command on the target.</li>
+                <li><code>--tamper=TAMPER</code>: Use tamper scripts to bypass filters (e.g., space2comment).</li>
+            </ul>
+
+            <h3>Enumeration Options</h3>
+            <ul>
+                <li><code>--current-user</code>: Retrieve the name of the current user.</li>
+                <li><code>--hostname</code>: Retrieve the hostname of the target system.</li>
+                <li><code>--is-root</code>: Check if the current user has root privileges.</li>
+                <li><code>--users</code>: Retrieve a list of users on the target system.</li>
+                <li><code>--passwords</code>: Retrieve password hashes of system users.</li>
+            </ul>
+
+            <h3>File Access Options</h3>
+            <ul>
+                <li><code>--file-read=FILEPATH</code>: Read a file from the target host.</li>
+                <li><code>--file-write=FILEPATH</code>: Write to a file on the target host.</li>
+                <li><code>--file-upload=FILENAME</code>: Upload a file to the target host.</li>
+                <li><code>--file-dest=DEST_PATH</code>: Specify the destination path on the target host for writing or uploading files.</li>
+            </ul>
+
+            <h2>Troubleshooting and Tips</h2>
+            <ul>
+                <li><strong>Bypassing WAFs:</strong> Use tamper scripts with the <code>--tamper</code> option to bypass Web Application Firewalls.</li>
+                <li><strong>Verbose Output:</strong> Increase verbosity with <code>-v</code> to get more detailed output for debugging.</li>
+                <li><strong>Session Management:</strong> Use the <code>-s</code> option to save sessions and <code>--flush-session</code> to remove them.</li>
+                <li><strong>Custom Headers:</strong> Add extra HTTP headers using the <code>-H</code> option.</li>
+                <li><strong>Timeouts and Retries:</strong> Adjust <code>--timeout</code> and <code>--retries</code> options for unstable network conditions.</li>
+            </ul>
+
+            <h2>Legal Considerations</h2>
+            <p>Always ensure you have explicit permission to test the security of a web application. Unauthorized testing may violate laws and ethical guidelines.</p>
+
+            <h2>External Links</h2>
+            <ul>
+                <li><a href="https://github.com/commixproject/commix">Commix on GitHub</a></li>
+                <li><a href="https://commixproject.com">Official Commix Website</a></li>
+                <li><a href="https://www.youtube.com/watch?v=6xgZ3F_c5VE">Commix Tutorial Video</a></li>
+            </ul>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Cykitool Library made by Students4Cyber. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

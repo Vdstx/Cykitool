@@ -15,3 +15,9 @@ fetch('tools-list-network.html')
     .then(data => {
         document.getElementById('tools-list-container-network').innerHTML = data;
     });
+
+fetch('tools-list-web.html')
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById('tools-list-container-web').innerHTML = data;
+    });

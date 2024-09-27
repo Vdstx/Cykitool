@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Tools - Gobuster</title>
+    <link rel="stylesheet" href="../styles/tools.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="../scripts/list-script.js"></script>
+</head>
+
+<body>
+    <header id="webContainer" class="category-header">
+        <div class="container">
+            <div class="category-name">
+                <h1><a href="web.html">Web</a></h1>
+                <p><a href="../index.html">Home</a></p>
+            </div>
+            <div class="tool-info">
+                <img src="../images/gobuster.svg" alt="Gobuster Logo" class="tool-logo">
+                <h2>Gobuster</h2>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="tools-list-container-web"></div>
+
+        <section class="tool-description">
+            <h2>About Gobuster</h2>
+            <p><strong>Gobuster</strong> is a command-line tool written in Go, used for brute-forcing URLs (directories and files) and DNS subdomains on web servers. It is designed for speed and efficiency, making it a popular choice for penetration testers and security researchers to discover hidden content and subdomains during web application assessments.</p>
+            <br>
+
+            <h2>Installation</h2>
+            <p><strong>Prerequisites:</strong> Ensure you have Go installed on your system (version 1.16 or higher).</p>
+            <br>
+            <p><strong>Installing Gobuster:</strong></p>
+            <code>
+                go install github.com/OJ/gobuster/v3@latest
+            </code>
+            <p>This will install Gobuster in your Go binaries directory, typically <code>$GOPATH/bin</code>.</p>
+            <br>
+            <p><strong>Alternative Installation using Binary Releases:</strong></p>
+            <ul>
+                <li>Download the precompiled binaries from the <a href="https://github.com/OJ/gobuster/releases">official GitHub releases page</a>.</li>
+                <li>Extract the archive and move the executable to a directory in your system's <code>PATH</code>.</li>
+            </ul>
+            <br>
+
+            <h2>Examples of Gobuster Usage</h2>
+            <h3>Directory Brute-Forcing</h3>
+            <p><strong>Basic Directory Scan:</strong></p>
+            <code>
+                gobuster dir -u http://example.com -w /path/to/wordlist.txt
+            </code>
+            <ul>
+                <li><strong>dir</strong>: Specifies the mode for directory brute-forcing.</li>
+                <li><strong>-u</strong>: The target URL.</li>
+                <li><strong>-w</strong>: Path to the wordlist file.</li>
+            </ul>
+            <br>
+
+            <h3>DNS Subdomain Brute-Forcing</h3>
+            <p><strong>Basic DNS Scan:</strong></p>
+            <code>
+                gobuster dns -d example.com -w /path/to/wordlist.txt
+            </code>
+            <ul>
+                <li><strong>dns</strong>: Specifies the mode for DNS subdomain brute-forcing.</li>
+                <li><strong>-d</strong>: The target domain.</li>
+                <li><strong>-w</strong>: Path to the wordlist file.</li>
+            </ul>
+            <br>
+
+            <h3>Virtual Host Brute-Forcing</h3>
+            <p><strong>VHost Enumeration:</strong></p>
+            <code>
+                gobuster vhost -u http://example.com -w /path/to/wordlist.txt
+            </code>
+            <ul>
+                <li><strong>vhost</strong>: Specifies the mode for virtual host brute-forcing.</li>
+                <li><strong>-u</strong>: The base URL of the target.</li>
+                <li><strong>-w</strong>: Path to the wordlist file.</li>
+            </ul>
+            <br>
+
+            <h2>Useful Options</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Option</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>-u, --url</code></td>
+                        <td>The target URL or domain.</td>
+                    </tr>
+                    <tr>
+                        <td><code>-w, --wordlist</code></td>
+                        <td>Path to the wordlist file.</td>
+                    </tr>
+                    <tr>
+                        <td><code>-t, --threads</code></td>
+                        <td>Number of concurrent threads (Default: 10).</td>
+                    </tr>
+                    <tr>
+                        <td><code>-o, --output</code></td>
+                        <td>File to write output results.</td>
+                    </tr>
+                    <tr>
+                        <td><code>-e, --expanded</code></td>
+                        <td>Show full URLs in output.</td>
+                    </tr>
+                    <tr>
+                        <td><code>-k, --no-tls-validation</code></td>
+                        <td>Skip TLS certificate verification.</td>
+                    </tr>
+                    <tr>
+                        <td><code>-x, --extensions</code></td>
+                        <td>File extension(s) to search for (e.g., php,txt).</td>
+                    </tr>
+                    <tr>
+                        <td><code>-s, --status-codes</code></td>
+                        <td>Filter results by HTTP status codes (e.g., 200,204,301).</td>
+                    </tr>
+                    <tr>
+                        <td><code>-b, --hide-length</code></td>
+                        <td>Hide the length of the body in the output.</td>
+                    </tr>
+                    <tr>
+                        <td><code>--timeout</code></td>
+                        <td>Request timeout in seconds (Default: 10).</td>
+                    </tr>
+                    <tr>
+                        <td><code>--proxy</code></td>
+                        <td>Use a proxy for requests (e.g., http://127.0.0.1:8080).</td>
+                    </tr>
+                    <tr>
+                        <td><code>-H, --header</code></td>
+                        <td>Add custom HTTP headers (e.g., "Authorization: Bearer TOKEN").</td>
+                    </tr>
+                    <tr>
+                        <td><code>-a, --user-agent</code></td>
+                        <td>Set the User-Agent string.</td>
+                    </tr>
+                    <tr>
+                        <td><code>--cookies</code></td>
+                        <td>Set cookies for the requests.</td>
+                    </tr>
+                    <tr>
+                        <td><code>--follow-redirect</code></td>
+                        <td>Follow HTTP redirects.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+
+            <h2>Troubleshooting and Tips</h2>
+            <ul>
+                <li><strong>Wordlists:</strong> Use comprehensive wordlists for better results. Popular choices include those from <a href="https://github.com/danielmiessler/SecLists">SecLists</a>.</li>
+                <li><strong>File Extensions:</strong> Specify common file extensions using the <code>-x</code> option to discover hidden files (e.g., <code>-x php,html,txt</code>).</li>
+                <li><strong>Rate Limiting:</strong> Adjust the number of threads with <code>-t</code> to respect the target's rate limits and avoid being blocked.</li>
+                <li><strong>Proxy Usage:</strong> Use the <code>--proxy</code> option to route traffic through tools like Burp Suite for deeper analysis.</li>
+                <li><strong>Status Codes:</strong> Use the <code>-s</code> option to filter results based on HTTP status codes of interest.</li>
+                <li><strong>HTTPS Issues:</strong> If you encounter TLS errors, use <code>-k</code> to skip TLS verification.</li>
+            </ul>
+            <br>
+
+            <h2>Legal Considerations</h2>
+            <p>Ensure you have explicit permission to perform scanning and enumeration on the target systems. Unauthorized scanning may violate laws and ethical guidelines.</p>
+            <br>
+
+            <h2>External Links</h2>
+            <ul>
+                <li><a href="https://github.com/OJ/gobuster">Gobuster on GitHub</a></li>
+                <li><a href="https://github.com/OJ/gobuster/blob/master/README.md">Official Gobuster Documentation</a></li>
+                <li><a href="https://www.youtube.com/watch?v=Kx11TzjY9FQ">Gobuster Tutorial Video</a></li>
+            </ul>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Cykitool Library made by Students4Cyber. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
