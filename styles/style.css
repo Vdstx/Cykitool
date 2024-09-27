@@ -92,13 +92,13 @@ header nav ul li a {
 .category p {
     margin-bottom: 15px;
     font-size: 1rem;
-    color: #555;
+    color: white;
 }
 
 .btn {
     display: inline-block;
-    background-color: #333;
-    color: #fff;
+    background-color: #bee5ec;
+    color: #333;
     padding: 10px 20px;
     text-decoration: none;
     border-radius: 5px;
@@ -113,19 +113,19 @@ header nav ul li a {
 
 
 #crypto{
-    background-color: #F5EEE6;
+    background-color: #90b4bb;
 }
 
 #web{
-    background-color: #FFF8E3;
+    background-color: #90b4bb;
 }
 
 #network{
-    background-color: #F3D7CA;
+    background-color: #90b4bb;
 }
 
 #forensics{
-    background-color:#E6A4B4 ;
+    background-color:#90b4bb ;
 }
 
 
