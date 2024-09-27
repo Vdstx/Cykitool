@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Tools - Burp Suite</title>
+    <link rel="stylesheet" href="../styles/tools.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="../scripts/list-script.js"></script>
+</head>
+
+<body>
+    <header id="webContainer" class="category-header">
+        <div class="container">
+            <div class="category-name">
+                <h1><a href="web.html">Web</a></h1>
+                <p><a href="../index.html">Home</a></p>
+            </div>
+            <div class="tool-info">
+                <img src="../images/burpsuite.png" alt="Burp Suite Logo" class="tool-logo">
+                <h2>Burp Suite</h2>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="tools-list-container-web"></div>
+
+        <section class="tool-description">
+            <h2>About Burp Suite</h2>
+            <p><strong>Burp Suite</strong> is an integrated platform for performing security testing of web applications. It offers a range of tools with numerous interfaces between them, designed to support the entire testing process, from initial mapping and analysis of an application's attack surface to finding and exploiting security vulnerabilities.</p>
+            <br>
+
+            <h2>Installation</h2>
+            <p>Burp Suite is available in two editions: Community (free) and Professional (paid). The Community Edition provides basic features suitable for beginners and small-scale testing.</p>
+            <br>
+            <p><strong>Download Burp Suite Community Edition:</strong></p>
+            <ul>
+                <li>Visit the official download page: <a href="https://portswigger.net/burp/communitydownload">Burp Suite Download</a></li>
+                <li>Choose the installer suitable for your operating system (Windows, macOS, or Linux).</li>
+                <li>Run the installer and follow the on-screen instructions.</li>
+            </ul>
+            <br>
+
+            <h2>Examples of Burp Suite Usage</h2>
+            <p><strong>Setting Up Burp Suite as a Proxy:</strong></p>
+            <ol>
+                <li>Launch Burp Suite.</li>
+                <li>Go to the <strong>Proxy</strong> tab and select <strong>Options</strong>.</li>
+                <li>Ensure the proxy listener is running on 127.0.0.1:8080.</li>
+                <li>Configure your browser to use Burp Suite as an HTTP/HTTPS proxy (usually by setting the proxy to 127.0.0.1 and port 8080).</li>
+                <li>Install Burp's CA certificate in your browser to intercept HTTPS traffic:
+                    <ul>
+                        <li>Visit <code>http://burp</code> in your browser.</li>
+                        <li>Download and install the CA certificate.</li>
+                    </ul>
+                </li>
+            </ol>
+            <br>
+
+            <p><strong>Intercepting and Modifying HTTP Requests:</strong></p>
+            <ol>
+                <li>With the proxy configured, navigate to a web application in your browser.</li>
+                <li>In Burp Suite, ensure <strong>Intercept is on</strong> under the Proxy tab.</li>
+                <li>The HTTP requests will be intercepted by Burp Suite.</li>
+                <li>You can modify request parameters, headers, and body before forwarding them to the server.</li>
+                <li>Click <strong>Forward</strong> to send the modified request.</li>
+            </ol>
+            <br>
+
+            <p><strong>Using Intruder for Automated Attacks:</strong></p>
+            <ol>
+                <li>Right-click on an intercepted request and select <strong>Send to Intruder</strong>.</li>
+                <li>Go to the <strong>Intruder</strong> tab and configure your attack:
+                    <ul>
+                        <li><strong>Positions:</strong> Define the payload positions by adding payload markers (e.g., §).</li>
+                        <li><strong>Payloads:</strong> Set the payload type and load a payload list.</li>
+                    </ul>
+                </li>
+                <li>Start the attack by clicking <strong>Start attack</strong>.</li>
+                <li>Analyze the results to identify potential vulnerabilities.</li>
+            </ol>
+            <br>
+
+            <h2>Useful Features</h2>
+            <h3>Proxy</h3>
+            <p>The <strong>Proxy</strong> module allows you to intercept and modify all HTTP and HTTPS traffic between your browser and the target web application. By configuring your browser to use Burp Suite as a proxy server, you can monitor requests and responses in real-time.</p>
+            <ul>
+                <li><strong>Intercept Mode:</strong> Decide which requests or responses to intercept for manual analysis or modification.</li>
+                <li><strong>HTTP History:</strong> Review all the HTTP requests and responses that have passed through the proxy.</li>
+                <li><strong>WebSockets:</strong> Intercept and manipulate WebSocket messages.</li>
+            </ul>
+            <br>
+
+            <h3>Repeater</h3>
+            <p>The <strong>Repeater</strong> tool enables you to manually modify and resend individual HTTP requests. It's useful for testing how the server responds to different inputs and for fine-tuning exploit payloads.</p>
+            <ul>
+                <li><strong>Edit Requests:</strong> Modify parameters, headers, and the body of HTTP requests.</li>
+                <li><strong>Response Analysis:</strong> View and compare server responses to different requests.</li>
+                <li><strong>Tabs:</strong> Use multiple tabs to work on various requests simultaneously.</li>
+            </ul>
+            <br>
+
+            <h3>Intruder</h3>
+            <p>The <strong>Intruder</strong> is a powerful tool for automating customized attacks against web applications. It can perform various types of payload injection to test for vulnerabilities like SQL injection, cross-site scripting (XSS), and parameter manipulation.</p>
+            <ul>
+                <li><strong>Attack Types:</strong> Supports Sniper, Battering Ram, Pitchfork, and Cluster Bomb attack types for different testing scenarios.</li>
+                <li><strong>Payload Positions:</strong> Define exactly where in the request the payloads should be inserted.</li>
+                <li><strong>Payload Sets:</strong> Use simple lists, recursive grep results, or custom payload generators.</li>
+                <li><strong>Grep Match/Extract:</strong> Automatically analyze responses for specific patterns or extract data.</li>
+            </ul>
+            <br>
+
+            <h3>Scanner (Professional Edition)</h3>
+            <p>The <strong>Scanner</strong> automates the process of detecting numerous types of vulnerabilities within web applications. It is only available in the Professional Edition of Burp Suite.</p>
+            <ul>
+                <li><strong>Active Scanning:</strong> Actively probes for vulnerabilities by sending customized requests.</li>
+                <li><strong>Passive Scanning:</strong> Analyzes normal traffic for security issues without altering requests.</li>
+                <li><strong>Vulnerability Reports:</strong> Generates detailed reports with remediation advice.</li>
+                <li><strong>Customization:</strong> Configure scan types, scope, and performance settings.</li>
+            </ul>
+            <br>
+
+            <h3>Extensibility</h3>
+            <p>Burp Suite's <strong>Extensibility</strong> allows you to enhance its capabilities by adding extensions. Extensions can be written in Java, Python, or Ruby and can be managed through the BApp Store.</p>
+            <ul>
+                <li><strong>BApp Store:</strong> Browse and install community-contributed extensions.</li>
+                <li><strong>APIs:</strong> Use the Burp Extender API to create custom extensions.</li>
+                <li><strong>Integration:</strong> Extensions can interact with all parts of Burp Suite, including Proxy, Scanner, and Intruder.</li>
+            </ul>
+            <br>
+
+            <h3>Decoder</h3>
+            <p>The <strong>Decoder</strong> tool helps you transform encoded data into a human-readable format and vice versa. It's useful for analyzing data that has been obfuscated or encoded using common schemes.</p>
+            <ul>
+                <li><strong>Supported Encodings:</strong> URL, HTML, Base64, Hex, ASCII, Gzip, etc.</li>
+                <li><strong>Smart Decode:</strong> Automatically detects and decodes multiple layers of encoding.</li>
+                <li><strong>Encode/Decode:</strong> Manually encode or decode data as needed.</li>
+            </ul>
+            <br>
+
+            <h3>Comparer</h3>
+            <p>The <strong>Comparer</strong> tool allows you to perform a visual comparison of any two items, such as HTTP requests or responses. It's helpful for identifying differences in server behavior or responses.</p>
+            <ul>
+                <li><strong>Session Analysis:</strong> Compare session tokens to assess randomness.</li>
+                <li><strong>Side-by-Side View:</strong> View items next to each other with differences highlighted.</li>
+                <li><strong>Word-Level Comparison:</strong> Choose between byte-level and word-level comparisons.</li>
+            </ul>
+            <br>
+
+            <h3>Sequencer</h3>
+            <p>The <strong>Sequencer</strong> analyzes the quality of randomness in tokens or session IDs generated by the web application. It's crucial for assessing the predictability of session tokens.</p>
+            <ul>
+                <li><strong>Token Sampling:</strong> Collect a large number of tokens automatically.</li>
+                <li><strong>Statistical Analysis:</strong> Performs FIPS-compliant randomness tests.</li>
+                <li><strong>Graphical Results:</strong> Visual representation of the token's randomness quality.</li>
+            </ul>
+            <br>
+
+            <h3>Site Map</h3>
+            <p>The <strong>Site Map</strong> provides a hierarchical view of the content and functionality within the target application. It helps in understanding the application's structure and identifying areas to focus testing efforts.</p>
+            <ul>
+                <li><strong>Tree and Table Views:</strong> Switch between different views for convenience.</li>
+                <li><strong>Filtering:</strong> Apply filters to focus on specific file types, status codes, or content lengths.</li>
+                <li><strong>Annotations:</strong> Add comments and highlight items for future reference.</li>
+            </ul>
+            <br>
+
+            <h3>Target Analyzer</h3>
+            <p>The <strong>Target</strong> tab includes tools to help you map the application's attack surface. It provides insights into the structure and technologies used by the application.</p>
+            <ul>
+                <li><strong>Site Map:</strong> Visual representation of the application's pages and endpoints.</li>
+                <li><strong>Issue Definitions:</strong> View and manage identified vulnerabilities and issues.</li>
+                <li><strong>Scope Management:</strong> Define the scope to focus testing on relevant parts of the application.</li>
+            </ul>
+            <br>
+
+            <h2>Useful Options</h2>
+            <ul>
+                <li><strong>Intercept Filters:</strong> Customize which requests and responses are intercepted based on URL, file type, or parameter.</li>
+                <li><strong>Scope Definition:</strong> Define target scope to focus your testing on specific hosts or URLs, preventing out-of-scope traffic from being processed.</li>
+                <li><strong>Session Handling Rules:</strong> Manage authentication and session tokens automatically, ensuring your requests are properly authenticated.</li>
+                <li><strong>Upstream Proxy Settings:</strong> Configure Burp to use an upstream proxy or SOCKS server if required for network connectivity.</li>
+                <li><strong>Logging and Alerts:</strong> Enable detailed logging and configure alerts for specific events to monitor your testing activities.</li>
+                <li><strong>Extensions:</strong> Install and manage extensions from the BApp Store to add new features and enhance functionality.</li>
+            </ul>
+            <br>
+
+            <h2>Troubleshooting and Tips</h2>
+            <ul>
+                <li><strong>SSL/TLS Issues:</strong> If you encounter SSL errors, ensure Burp's CA certificate is installed in your browser to trust Burp's interception.</li>
+                <li><strong>Browser Configuration:</strong> Use the embedded Burp browser to avoid manual proxy configuration and certificate installation.</li>
+                <li><strong>Performance:</strong> For large-scale testing, consider adjusting the memory allocation and thread settings in Burp's options.</li>
+                <li><strong>Session Management:</strong> Use session handling rules to manage authentication tokens automatically, maintaining valid sessions during testing.</li>
+                <li><strong>Stay Updated:</strong> Regularly update Burp Suite and its extensions to benefit from the latest features, bug fixes, and security patches.</li>
+                <li><strong>Keyboard Shortcuts:</strong> Familiarize yourself with Burp's keyboard shortcuts to enhance efficiency during testing.</li>
+            </ul>
+            <br>
+
+            <h2>Legal Considerations</h2>
+            <p>Ensure you have explicit permission to perform security testing on target web applications. Unauthorized testing may violate laws and ethical guidelines.</p>
+            <br>
+
+            <h2>External Links</h2>
+            <ul>
+                <li><a href="https://portswigger.net/burp/documentation">Official Burp Suite Documentation</a></li>
+                <li><a href="https://portswigger.net/web-security">Web Security Academy by PortSwigger</a></li>
+                <li><a href="https://github.com/PortSwigger">Burp Suite Extensions on GitHub</a></li>
+            </ul>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Cykitool Library made by Students4Cyber. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

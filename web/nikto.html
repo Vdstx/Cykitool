@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Tools - Nikto</title>
+    <link rel="stylesheet" href="../styles/tools.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="../scripts/list-script.js"></script>
+</head>
+
+<body>
+    <header id="webContainer" class="category-header">
+        <div class="container">
+            <div class="category-name">
+                <h1><a href="web.html">Web</a></h1>
+                <p><a href="../index.html">Home</a></p>
+            </div>
+            <div class="tool-info">
+                <img src="../images/nikto.svg" alt="Nikto Logo" class="tool-logo">
+                <h2>Nikto</h2>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="tools-list-container-web"></div>
+
+        <section class="tool-description">
+            <h2>About Nikto</h2>
+            <p><strong>Nikto</strong> is an open-source web server scanner that performs comprehensive tests against web servers for multiple items, including over 6,700 potentially dangerous files/programs, checks for outdated versions of over 1,250 servers, and version-specific problems on over 270 servers. Nikto is a widely used tool in penetration testing and security assessments to identify vulnerabilities and misconfigurations in web servers.</p>
+            <br>
+
+            <h2>Installation</h2>
+            <p>Nikto is written in Perl and requires Perl to be installed on your system.</p>
+            <br>
+            <p><strong>Installing Nikto on Debian-based Systems:</strong></p>
+            <code>
+                sudo apt-get install nikto
+            </code>
+            <br><br>
+            <p><strong>Installing Nikto from Source:</strong></p>
+            <code>
+                git clone https://github.com/sullo/nikto.git<br>
+                cd nikto/program<br>
+                perl nikto.pl -h
+            </code>
+            <br>
+
+            <h2>Examples of Nikto Usage</h2>
+            <p><strong>Basic Scan of a Website:</strong></p>
+            <code>
+                nikto -h http://example.com
+            </code>
+            <ul>
+                <li><strong>-h</strong>: Specifies the target host to scan.</li>
+            </ul>
+            <br>
+
+            <p><strong>Specifying a Port:</strong></p>
+            <code>
+                nikto -h http://example.com -p 8080
+            </code>
+            <ul>
+                <li><strong>-p</strong>: Specifies the port to scan (default is 80 for HTTP).</li>
+            </ul>
+            <br>
+
+            <p><strong>Scanning Multiple Hosts from a File:</strong></p>
+            <code>
+                nikto -h hosts.txt
+            </code>
+            <ul>
+                <li>Where <code>hosts.txt</code> is a file containing a list of hosts or IP addresses.</li>
+            </ul>
+            <br>
+
+            <p><strong>Saving the Scan Results to a File:</strong></p>
+            <code>
+                nikto -h http://example.com -o scan_results.txt -Format txt
+            </code>
+            <ul>
+                <li><strong>-o</strong>: Specifies the output file.</li>
+                <li><strong>-Format</strong>: Specifies the output format (txt, csv, html, xml, nbe).</li>
+            </ul>
+            <br>
+
+            <p><strong>Using SSL/TLS Scanning:</strong></p>
+            <code>
+                nikto -h https://example.com -ssl
+            </code>
+            <ul>
+                <li><strong>-ssl</strong>: Forces Nikto to use SSL when connecting to the server.</li>
+            </ul>
+            <br>
+
+            <p><strong>Ignoring a Specific Check:</strong></p>
+            <code>
+                nikto -h http://example.com -id 001234
+            </code>
+            <ul>
+                <li><strong>-id</strong>: Specifies an ID of a check to disable.</li>
+            </ul>
+            <br>
+
+            <h2>Useful Options</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Option</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>-h, --host</code></td>
+                        <td>Target host(s) to scan (hostname, IP, or file).</td>
+                    </tr>
+                    <tr>
+                        <td><code>-p, --port</code></td>
+                        <td>Port(s) to scan (e.g., 80,443).</td>
+                    </tr>
+                    <tr>
+                        <td><code>-Tuning</code></td>
+                        <td>Scan tuning options to control test types (e.g., 1 for interesting files).</td>
+                    </tr>
+                    <tr>
+                        <td><code>-o, --output</code></td>
+                        <td>Output file to write the results.</td>
+                    </tr>
+                    <tr>
+                        <td><code>-Format</code></td>
+                        <td>Format of the output file (e.g., txt, html, csv).</td>
+                    </tr>
+                    <tr>
+                        <td><code>-ssl</code></td>
+                        <td>Force SSL mode on port.</td>
+                    </tr>
+                    <tr>
+                        <td><code>-nossl</code></td>
+                        <td>Disable SSL.</td>
+                    </tr>
+                    <tr>
+                        <td><code>-timeout</code></td>
+                        <td>Timeout for requests (default 10 seconds).</td>
+                    </tr>
+                    <tr>
+                        <td><code>-useragent</code></td>
+                        <td>Set the User-Agent string.</td>
+                    </tr>
+                    <tr>
+                        <td><code>-useproxy</code></td>
+                        <td>Use the proxy defined in the configuration file.</td>
+                    </tr>
+                    <tr>
+                        <td><code>-list-plugins</code></td>
+                        <td>List all available plugins and their status.</td>
+                    </tr>
+                    <tr>
+                        <td><code>-update</code></td>
+                        <td>Update the plugins and databases.</td>
+                    </tr>
+                    <tr>
+                        <td><code>-evasion</code></td>
+                        <td>Specify evasion technique(s) to use (e.g., 1 for random URI encoding).</td>
+                    </tr>
+                    <tr>
+                        <td><code>-Plugins</code></td>
+                        <td>Select which plugins to run (e.g., all, outdated, headers).</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+
+            <h2>Troubleshooting and Tips</h2>
+            <ul>
+                <li><strong>Proxy Support:</strong> Configure proxy settings in the Nikto configuration file or use the <code>-useproxy</code> option.</li>
+                <li><strong>Increasing Verbosity:</strong> Use the <code>-v</code> option to increase verbosity for more detailed output.</li>
+                <li><strong>Custom Headers:</strong> Use the <code>-useragent</code> option to set a custom User-Agent string, or modify headers in the configuration file.</li>
+                <li><strong>Evasion Techniques:</strong> Employ evasion techniques with the <code>-evasion</code> option to bypass basic IDS/IPS detection.</li>
+                <li><strong>Updating Nikto:</strong> Regularly update Nikto's plugins and databases using the <code>-update</code> option to ensure up-to-date vulnerability checks.</li>
+                <li><strong>Scan Tuning:</strong> Use the <code>-Tuning</code> option to control the types of tests performed, focusing on specific vulnerability categories.</li>
+            </ul>
+            <br>
+
+            <h2>Legal Considerations</h2>
+            <p>Ensure you have explicit permission to scan and test the target web servers. Unauthorized scanning may violate laws, regulations, and ethical guidelines.</p>
+            <br>
+
+            <h2>External Links</h2>
+            <ul>
+                <li><a href="https://cirt.net/Nikto2">Official Nikto Website</a></li>
+                <li><a href="https://github.com/sullo/nikto">Nikto on GitHub</a></li>
+                <li><a href="https://cirt.net/nikto2-docs/">Nikto Documentation</a></li>
+            </ul>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Cykitool Library made by Students4Cyber. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

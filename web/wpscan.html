@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Tools - WPScan</title>
+    <link rel="stylesheet" href="../styles/tools.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="../scripts/list-script.js"></script>
+</head>
+
+<body>
+    <header id="webContainer" class="category-header">
+        <div class="container">
+            <div class="category-name">
+                <h1><a href="web.html">Web</a></h1>
+                <p><a href="../index.html">Home</a></p>
+            </div>
+            <div class="tool-info">
+                <img src="../images/wpscan.svg" alt="WPScan Logo" class="tool-logo">
+                <h2>WPScan</h2>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="tools-list-container-web"></div>
+
+        <section class="tool-description">
+            <h2>About WPScan</h2>
+            <p><strong>WPScan</strong> is a black box WordPress vulnerability scanner written in Ruby. It is designed to help security professionals and WordPress administrators identify potential security issues within WordPress installations, including vulnerable plugins, themes, and weak passwords. WPScan uses a database of known vulnerabilities to check against the target site.</p>
+            <br>
+
+            <h2>Installation</h2>
+            <p>WPScan requires Ruby and RubyGems to be installed on your system.</p>
+            <br>
+            <p><strong>Installing WPScan on Debian-based Systems:</strong></p>
+            <code>
+                sudo apt install ruby ruby-dev<br>
+                sudo gem install wpscan
+            </code>
+            <br><br>
+            <p><strong>Updating WPScan:</strong></p>
+            <code>
+                sudo gem update wpscan
+            </code>
+            <br>
+
+            <h2>API Token</h2>
+            <p>WPScan uses an API to fetch the latest vulnerability data. You need to register for a free API token at <a href="https://wpscan.com/register">wpscan.com/register</a> and include it in your scans using the <code>--api-token</code> option or by setting it in the configuration file.</p>
+            <br>
+
+            <h2>Examples of WPScan Usage</h2>
+            <p><strong>Basic Scan of a WordPress Site:</strong></p>
+            <code>
+                wpscan --url https://example.com --api-token YOUR_API_TOKEN
+            </code>
+            <ul>
+                <li><strong>--url</strong>: Specifies the target URL.</li>
+                <li><strong>--api-token</strong>: Your WPScan API token.</li>
+            </ul>
+            <br>
+
+            <p><strong>Enumerating Plugins:</strong></p>
+            <code>
+                wpscan --url https://example.com --enumerate p --api-token YOUR_API_TOKEN
+            </code>
+            <ul>
+                <li><strong>--enumerate p</strong>: Enumerates installed plugins.</li>
+            </ul>
+            <br>
+
+            <p><strong>Enumerating Users:</strong></p>
+            <code>
+                wpscan --url https://example.com --enumerate u --api-token YOUR_API_TOKEN
+            </code>
+            <ul>
+                <li><strong>--enumerate u</strong>: Enumerates WordPress usernames.</li>
+            </ul>
+            <br>
+
+            <p><strong>Password Brute-Forcing:</strong></p>
+            <code>
+                wpscan --url https://example.com --passwords /path/to/wordlist.txt --api-token YOUR_API_TOKEN
+            </code>
+            <ul>
+                <li><strong>--passwords</strong>: Specifies the path to a password wordlist for brute-forcing.</li>
+            </ul>
+            <br>
+
+            <h2>Useful Options</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Option</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>--url</code></td>
+                        <td>The target URL to scan.</td>
+                    </tr>
+                    <tr>
+                        <td><code>--update</code></td>
+                        <td>Update WPScan's database to the latest version.</td>
+                    </tr>
+                    <tr>
+                        <td><code>--enumerate</code></td>
+                        <td>Enumeration options (e.g., p for plugins, t for themes, u for users).</td>
+                    </tr>
+                    <tr>
+                        <td><code>--plugins-detection</code></td>
+                        <td>Specify the method for plugin detection (mixed, passive, aggressive).</td>
+                    </tr>
+                    <tr>
+                        <td><code>--api-token</code></td>
+                        <td>Your WPScan API token for vulnerability data.</td>
+                    </tr>
+                    <tr>
+                        <td><code>--random-user-agent</code></td>
+                        <td>Use a random User-Agent for each scan.</td>
+                    </tr>
+                    <tr>
+                        <td><code>--user-agent</code></td>
+                        <td>Set a custom User-Agent string.</td>
+                    </tr>
+                    <tr>
+                        <td><code>--proxy</code></td>
+                        <td>Use a proxy for requests (e.g., http://127.0.0.1:8080).</td>
+                    </tr>
+                    <tr>
+                        <td><code>--cookies</code></td>
+                        <td>Set cookies to be used in requests.</td>
+                    </tr>
+                    <tr>
+                        <td><code>--headers</code></td>
+                        <td>Set custom HTTP headers (e.g., 'Accept: */*').</td>
+                    </tr>
+                    <tr>
+                        <td><code>--passwords</code></td>
+                        <td>Path to password wordlist for brute-forcing.</td>
+                    </tr>
+                    <tr>
+                        <td><code>--usernames</code></td>
+                        <td>Specify usernames for password brute-forcing.</td>
+                    </tr>
+                    <tr>
+                        <td><code>--threads</code></td>
+                        <td>Number of threads to use (Default: 5).</td>
+                    </tr>
+                    <tr>
+                        <td><code>--output</code></td>
+                        <td>Save scan results to a file.</td>
+                    </tr>
+                    <tr>
+                        <td><code>--format</code></td>
+                        <td>Format of the output file (cli, json, cli-no-colour).</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+
+            <h2>Troubleshooting and Tips</h2>
+            <ul>
+                <li><strong>API Rate Limits:</strong> Free API tokens have rate limits. Plan scans accordingly or consider upgrading for higher limits.</li>
+                <li><strong>Customizing Scans:</strong> Use enumeration options to focus on specific areas (e.g., <code>--enumerate ap,at</code> for all plugins and themes).</li>
+                <li><strong>Respect Target Resources:</strong> Adjust the number of threads with <code>--threads</code> to avoid overloading the target server.</li>
+                <li><strong>Proxy Usage:</strong> Use the <code>--proxy</code> option to route traffic through a proxy like Burp Suite for analysis.</li>
+                <li><strong>User Enumeration:</strong> Be aware that user enumeration may not always be possible if the site has protections in place.</li>
+                <li><strong>Updates:</strong> Regularly update WPScan and its vulnerability database with <code>--update</code> to ensure the latest data is used.</li>
+            </ul>
+            <br>
+
+            <h2>Legal Considerations</h2>
+            <p>Ensure you have explicit permission to scan and test the target WordPress installations. Unauthorized scanning may violate laws, regulations, and ethical guidelines.</p>
+            <br>
+
+            <h2>External Links</h2>
+            <ul>
+                <li><a href="https://wpscan.com">Official WPScan Website</a></li>
+                <li><a href="https://github.com/wpscanteam/wpscan">WPScan on GitHub</a></li>
+                <li><a href="https://wpscan.com/wordpress-security-scanner">WPScan Documentation</a></li>
+            </ul>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Cykitool Library made by Students4Cyber. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
