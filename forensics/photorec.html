@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forensics Tools - PhotoRec</title>
+    <link rel="stylesheet" href="../styles/tools.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="../scripts/list-script.js"></script>
+</head>
+
+<body>
+    <header id="forensicsContainer" class="category-header">
+        <div class="container">
+            <div class="category-name">
+                <h1><a href="forensics.html">Forensics</a></h1>
+                <p><a href="../index.html">Home</a></p>
+            </div>
+            <div class="tool-info">
+                <img src="../images/photorec.png" alt="PhotoRec Logo" class="tool-logo">
+                <h2>PhotoRec</h2>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="tools-list-container-forensics"></div>
+
+        <section class="tool-description">
+            <h2>About PhotoRec</h2>
+            <p><strong>PhotoRec</strong> is a powerful data recovery tool designed to recover lost files including videos, documents, archives, and photos from hard disks, CD-ROMs, and lost pictures from digital camera memory. It works by ignoring the filesystem and looking for underlying data, making it effective even when the filesystem is severely damaged or reformatted. PhotoRec is part of the TestDisk suite and is open-source software available for multiple platforms.</p>
+            <br>
+
+            <h2>Installation</h2>
+            <p>On Debian-based Linux distributions:</p>
+            <code>sudo apt-get install testdisk</code>
+            <br><br>
+            <p>PhotoRec comes bundled with TestDisk. For other platforms or to download the latest version:</p>
+            <ul>
+                <li>Download link: <a href="https://www.cgsecurity.org/wiki/TestDisk_Download">Official TestDisk & PhotoRec Download</a></li>
+            </ul>
+            <br>
+
+            <h2>Examples of PhotoRec Usage</h2>
+            <p><strong>Recovering Files from a Disk:</strong></p>
+            <ol>
+                <li>Run PhotoRec as root or with sudo:</li>
+                <code>sudo photorec</code>
+                <li>Select the disk that contains the lost files.</li>
+                <li>Choose the partition type (usually Intel/PC partition).</li>
+                <li>Select <strong>File Opt</strong> to choose specific file types to recover (optional).</li>
+                <li>Choose the filesystem type:
+                    <ul>
+                        <li><strong>Free</strong>: Recover files from unallocated space (faster).</li>
+                        <li><strong>Whole</strong>: Search the entire partition or disk (more thorough).</li>
+                    </ul>
+                </li>
+                <li>Select the destination directory where recovered files will be saved.</li>
+                <li>PhotoRec will start recovering files and display progress.</li>
+            </ol>
+            <br>
+
+            <p><strong>Specifying File Types to Recover:</strong></p>
+            <p>Before starting the recovery, you can specify which file types to recover:</p>
+            <ul>
+                <li>In the main menu, select <strong>File Opt</strong>.</li>
+                <li>Uncheck all file types by pressing <code>s</code>.</li>
+                <li>Select specific file types by navigating and pressing <code>space</code>.</li>
+                <li>Press <code>b</code> to save the settings and return to the main menu.</li>
+            </ul>
+            <br>
+
+            <h2>Useful Options</h2>
+            <ul>
+                <li><strong>File System Type Detection:</strong> PhotoRec automatically detects the filesystem type, but you can manually specify it if needed.</li>
+                <li><strong>Expert Mode:</strong> Launch PhotoRec with <code>photorec /debug /log /d recup_dir</code> for advanced options and logging.</li>
+                <li><strong>Resume Recovery:</strong> If recovery is interrupted, you can resume by selecting the <code>photorec.ses</code> file when prompted.</li>
+                <li><strong>Command-Line Options:</strong> PhotoRec can be run with various command-line options for automation and scripting.</li>
+            </ul>
+
+            <h2>Troubleshooting and Tips</h2>
+            <ul>
+                <li><strong>Destination Directory:</strong> Always choose a different physical drive or partition as the destination to prevent overwriting lost data.</li>
+                <li><strong>File Organization:</strong> Recovered files are saved with generic names; use file sorting tools to organize them after recovery.</li>
+                <li><strong>Read-Only Mode:</strong> PhotoRec works in read-only mode and does not write to the source drive, ensuring data integrity.</li>
+                <li><strong>Large Volumes:</strong> Recovery may take a long time on large disks; ensure you have enough time and system resources.</li>
+                <li><strong>Backup Important Data:</strong> Regular backups can prevent data loss and reduce the need for recovery tools.</li>
+            </ul>
+
+            <h2>Example: Recovering Deleted Photos from a Memory Card</h2>
+            <p>If you have accidentally deleted photos from an SD card, insert the card into your computer and run:</p>
+            <code>sudo photorec /dev/sdb</code>
+            <p>Replace <code>/dev/sdb</code> with the device name of your memory card. Follow the on-screen instructions to recover your photos.</p>
+            <br>
+
+            <h2>Legal Considerations</h2>
+            <p>Ensure you have the legal right and authorization to recover data from the device. Unauthorized recovery of data may violate privacy laws and regulations.</p>
+
+            <h2>External Links</h2>
+            <ul>
+                <li><a href="https://www.cgsecurity.org/wiki/PhotoRec">Official PhotoRec Documentation</a></li>
+                <li><a href="https://www.youtube.com/watch?v=T_8Yi_S8eT4">PhotoRec Tutorial Video</a></li>
+            </ul>
+
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Cykitool Library made by Students4Cyber. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forensics Tools - Binwalk</title>
+    <link rel="stylesheet" href="../styles/tools.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="../scripts/list-script.js"></script>
+</head>
+
+<body>
+    <header id="forensicsContainer" class="category-header">
+        <div class="container">
+            <div class="category-name">
+                <h1><a href="forensics.html">Forensics</a></h1>
+                <p><a href="../index.html">Home</a></p>
+            </div>
+            <div class="tool-info">
+                <img src="../images/binwalk.svg" alt="Binwalk Logo" class="tool-logo">
+                <h2>Binwalk</h2>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="tools-list-container-forensics"></div>
+
+        <section class="tool-description">
+            <h2>About Binwalk</h2>
+            <p><strong>Binwalk</strong> is a fast and easy-to-use tool for analyzing, reverse engineering, and extracting firmware images. It scans binary files for embedded files and executable code, leveraging signatures, magic numbers, and other heuristics to identify and extract them. Binwalk is commonly used in the field of embedded systems security, digital forensics, and reverse engineering.</p>
+            <br>
+
+            <h2>Installation</h2>
+            <p>On Debian-based Linux distributions:</p>
+            <code>sudo apt-get install binwalk</code>
+            <br><br>
+            <p>To install the latest version from source:</p>
+            <code>
+                git clone https://github.com/ReFirmLabs/binwalk.git<br>
+                cd binwalk<br>
+                sudo python3 setup.py install
+            </code>
+            <br>
+
+            <h2>Examples of Binwalk Usage</h2>
+            <p><strong>Scanning a Firmware Image:</strong></p>
+            <code>binwalk firmware.bin</code>
+            <br>
+            <ul>
+                <li>Performs a signature scan on <code>firmware.bin</code> to identify embedded files and code.</li>
+            </ul>
+
+            <p><strong>Extracting Embedded Files Automatically:</strong></p>
+            <code>binwalk -e firmware.bin</code>
+            <br>
+            <ul>
+                <li><strong>-e</strong> or <strong>--extract</strong>: Automatically extracts identified files.</li>
+            </ul>
+
+            <p><strong>Recursive Extraction:</strong></p>
+            <code>binwalk -Me firmware.bin</code>
+            <br>
+            <ul>
+                <li><strong>-M</strong> or <strong>--matryoshka</strong>: Enables recursive extraction (extract files within extracted files).</li>
+                <li><strong>-e</strong>: Extracts files as before.</li>
+            </ul>
+
+            <p><strong>Viewing Entropy Analysis:</strong></p>
+            <code>binwalk --entropy firmware.bin</code>
+            <br>
+            <ul>
+                <li><strong>--entropy</strong>: Generates an entropy graph to help identify compressed or encrypted data.</li>
+            </ul>
+
+            <p><strong>Carving Files Based on Signatures:</strong></p>
+            <code>binwalk --dd='png image:png' imagefile.img</code>
+            <br>
+            <ul>
+                <li><strong>--dd</strong>: Defines custom extraction rules.</li>
+                <li><code>'png image:png'</code>: Extracts all PNG images and saves them with a .png extension.</li>
+            </ul>
+
+            <h2>Useful Options</h2>
+            <ul>
+                <li><code>-B</code> or <code>--signature</code>: Performs a binary signature scan (default behavior).</li>
+                <li><code>-R</code> or <code>--raw</code>: Scans for common raw compressed data.</li>
+                <li><code>-A</code> or <code>--opcodes</code>: Scans for executable code signatures.</li>
+                <li><code>-E</code> or <code>--entropy</code>: Performs entropy analysis.</li>
+                <li><code>-D</code> or <code>--dd</code>: Extracts data matching a specified signature.</li>
+                <li><code>-X</code> or <code>--hexdump</code>: Displays a hexdump of the specified file.</li>
+                <li><code>-I</code> or <code>--include</code>: Includes a custom signature file for scanning.</li>
+                <li><code>-r</code> or <code>--raw-bytes</code>: Extracts raw bytes from the target file.</li>
+            </ul>
+
+            <h2>Troubleshooting and Tips</h2>
+            <ul>
+                <li><strong>Permissions:</strong> Ensure you have read permissions on the files you are analyzing.</li>
+                <li><strong>Dependencies:</strong> Install additional extractors to improve extraction capabilities (e.g., <code>sudo apt-get install p7zip-full</code>).</li>
+                <li><strong>Custom Signatures:</strong> Create custom signature files for proprietary formats using the <code>--include</code> option.</li>
+                <li><strong>Analyzing Entropy:</strong> Use entropy analysis to spot encrypted or compressed sections within firmware.</li>
+                <li><strong>Verbose Output:</strong> Use <code>-v</code> for verbose output to get more detailed information during scanning.</li>
+            </ul>
+
+            <h2>Example: Extracting Files from a Firmware Image</h2>
+            <p>Suppose you have a firmware image named <code>router_firmware.bin</code> and you want to extract all possible files:</p>
+            <code>binwalk -e router_firmware.bin</code>
+            <p>This command will create a directory named <code>_router_firmware.bin.extracted</code> containing all the extracted files.</p>
+            <br>
+
+            <p>To perform a recursive extraction, including archives within the firmware:</p>
+            <code>binwalk -Me router_firmware.bin</code>
+            <br>
+
+            <h2>Legal Considerations</h2>
+            <p>Ensure you have the legal right and authorization to analyze and extract firmware images. Unauthorized reverse engineering or extraction may violate licensing agreements and laws.</p>
+
+            <h2>External Links</h2>
+            <ul>
+                <li><a href="https://github.com/ReFirmLabs/binwalk">Binwalk on GitHub</a></li>
+                <li><a href="https://www.refirmlabs.com/binwalk/">Official Binwalk Documentation</a></li>
+                <li><a href="https://www.youtube.com/watch?v=FdWk6syXFS8">Binwalk Tutorial Video</a></li>
+            </ul>
+
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Cykitool Library made by Students4Cyber. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

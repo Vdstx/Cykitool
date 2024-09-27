@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forensics Tools - CFF Explorer</title>
+    <link rel="stylesheet" href="../styles/tools.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="../scripts/list-script.js"></script>
+</head>
+
+<body>
+    <header id="forensicsContainer" class="category-header">
+        <div class="container">
+            <div class="category-name">
+                <h1><a href="forensics.html">Forensics</a></h1>
+                <p><a href="../index.html">Home</a></p>
+            </div>
+            <div class="tool-info">
+                <img src="../images/cffexplorer.png" alt="CFF Explorer Logo" class="tool-logo">
+                <h2>CFF Explorer</h2>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="tools-list-container-forensics"></div>
+
+        <section class="tool-description">
+            <h2>About CFF Explorer</h2>
+            <p><strong>CFF Explorer</strong> is a freeware suite of tools designed to make PE (Portable Executable) editing as easy as possible. It includes a PE editor with support for headers, sections, directories, import/export tables, and more. CFF Explorer is widely used in reverse engineering, malware analysis, and software development for inspecting and modifying executable files on Windows.</p>
+            <br>
+
+            <h2>Installation</h2>
+            <p>CFF Explorer is available for Windows platforms. You can download it from the official website:</p>
+            <ul>
+                <li>Download link: <a href="https://ntcore.com/?page_id=388">CFF Explorer Download</a></li>
+            </ul>
+            <br>
+            <p>No installation is necessary; simply extract the downloaded ZIP file and run the <code>CFF Explorer.exe</code> executable.</p>
+            <br>
+
+            <h2>Examples of CFF Explorer Usage</h2>
+            <p><strong>Opening an Executable File:</strong></p>
+            <p>Launch CFF Explorer and use the <em>File &gt; Open</em> menu to select the executable file you wish to inspect.</p>
+            <br>
+
+            <p><strong>Inspecting PE Headers:</strong></p>
+            <p>Navigate through the sections in the left pane to view and edit:</p>
+            <ul>
+                <li><strong>NT Headers</strong>: Includes the PE signature, file header, and optional header.</li>
+                <li><strong>Sections</strong>: View details about each section, such as .text, .data, etc.</li>
+                <li><strong>Import Directory</strong>: Displays the functions imported from other DLLs.</li>
+                <li><strong>Export Directory</strong>: Shows the functions exported by the executable or DLL.</li>
+            </ul>
+            <br>
+
+            <p><strong>Editing Entry Point:</strong></p>
+            <p>You can modify the entry point of the executable by editing the <strong>AddressOfEntryPoint</strong> value in the Optional Header.</p>
+            <br>
+
+            <p><strong>Adding a New Section:</strong></p>
+            <p>Right-click on the <strong>Section Headers</strong> and select <em>Add Section</em> to insert a new section into the executable.</p>
+            <br>
+
+            <p><strong>Calculating Checksums:</strong></p>
+            <p>Use the <strong>Checksum Recalculator</strong> to fix the PE checksum after making modifications.</p>
+            <br>
+
+            <h2>Useful Features</h2>
+            <ul>
+                <li><strong>Hex Editor Integration:</strong> Built-in hex editor for low-level file modifications.</li>
+                <li><strong>Dependency Walker:</strong> Analyze the dependencies and imported functions.</li>
+                <li><strong>Resource Editor:</strong> View and edit resources like icons, dialogs, and strings.</li>
+                <li><strong>Signature Scanner:</strong> Detect known signatures within the file.</li>
+                <li><strong>Data Directories:</strong> Access and edit various PE data directories like Debug, TLS, and Resources.</li>
+            </ul>
+
+            <h2>Troubleshooting and Tips</h2>
+            <ul>
+                <li><strong>Backup Files:</strong> Always create a backup of the original executable before making any changes.</li>
+                <li><strong>Understanding PE Structure:</strong> Familiarize yourself with the PE file format to effectively use CFF Explorer.</li>
+                <li><strong>Use with Caution:</strong> Modifying executable files can lead to instability or security risks; ensure you understand the implications of changes.</li>
+                <li><strong>Run as Administrator:</strong> Some files may require administrative privileges to access or modify.</li>
+            </ul>
+
+            <h2>Legal Considerations</h2>
+            <p>Ensure that you have the legal right and authorization to analyze or modify any executable files. Unauthorized reverse engineering or modification of software may violate licensing agreements and laws.</p>
+
+            <h2>External Links</h2>
+            <ul>
+                <li><a href="https://ntcore.com/?page_id=388">Official CFF Explorer Page</a></li>
+                <li><a href="https://docs.microsoft.com/en-us/windows/win32/debug/pe-format">Microsoft PE Format Documentation</a></li>
+            </ul>
+
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Cykitool Library made by Students4Cyber. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

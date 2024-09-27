@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forensics Tools - Aircrack-ng</title>
+    <link rel="stylesheet" href="../styles/tools.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="../scripts/list-script.js"></script>
+</head>
+
+<body>
+    <header id="forensicsContainer" class="category-header">
+        <div class="container">
+            <div class="category-name">
+                <h1><a href="forensics.html">Forensics</a></h1>
+                <p><a href="../index.html">Home</a></p>
+            </div>
+            <div class="tool-info">
+                <img src="../images/aircrack-ng.jpeg" alt="Aircrack-ng Logo" class="tool-logo">
+                <h2>Aircrack-ng</h2>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="tools-list-container-forensics"></div>
+
+        <section class="tool-description">
+            <h2>About Aircrack-ng</h2>
+            <p><strong>Aircrack-ng</strong> is a comprehensive suite of tools designed for assessing Wi-Fi network security. It focuses on monitoring, attacking, testing, and cracking Wi-Fi networks. Aircrack-ng is widely used for network audits and penetration testing to evaluate the security of wireless encryption protocols like WEP, WPA, and WPA2.</p>
+            <br>
+
+            <h2>Installation</h2>
+            <p>On Debian-based Linux distributions:</p>
+            <code>sudo apt-get install aircrack-ng</code>
+            <br><br>
+            <p>On macOS using Homebrew:</p>
+            <code>brew install aircrack-ng</code>
+            <br><br>
+            <p>To build from source:</p>
+            <code>git clone https://github.com/aircrack-ng/aircrack-ng<br>
+                cd aircrack-ng<br>
+                ./autogen.sh<br>
+                ./configure<br>
+                make<br>
+                sudo make install</code>
+            <br><br>
+
+            <h2>Examples of Aircrack-ng Usage</h2>
+            <p><strong>Putting Wireless Interface into Monitor Mode:</strong></p>
+            <code>sudo airmon-ng start wlan0</code>
+            <br><br>
+            <ul>
+                <li><strong>wlan0</strong>: Your wireless network interface.</li>
+            </ul>
+
+            <p><strong>Capturing Packets with Airodump-ng:</strong></p>
+            <code>sudo airodump-ng wlan0mon</code>
+            <br><br>
+            <ul>
+                <li><strong>wlan0mon</strong>: The wireless interface in monitor mode.</li>
+            </ul>
+
+            <p><strong>Filtering by Channel and BSSID:</strong></p>
+            <code>sudo airodump-ng --bssid AA:BB:CC:DD:EE:FF --channel 6 --write capture wlan0mon</code>
+            <br><br>
+            <ul>
+                <li><strong>--bssid</strong>: Filters packets from a specific access point.</li>
+                <li><strong>--channel</strong>: Specifies the Wi-Fi channel to monitor.</li>
+                <li><strong>--write</strong>: Writes the captured packets to a file.</li>
+            </ul>
+
+            <p><strong>Deauthenticating Clients with Aireplay-ng:</strong></p>
+            <code>sudo aireplay-ng --deauth 10 -a AA:BB:CC:DD:EE:FF wlan0mon</code>
+            <br><br>
+            <ul>
+                <li><strong>--deauth 10</strong>: Sends 10 deauthentication frames.</li>
+                <li><strong>-a</strong>: Specifies the BSSID of the target access point.</li>
+            </ul>
+
+            <p><strong>Cracking WEP Encryption:</strong></p>
+            <code>aircrack-ng -b AA:BB:CC:DD:EE:FF capture*.cap</code>
+            <br><br>
+            <ul>
+                <li><strong>-b</strong>: Specifies the BSSID of the target network.</li>
+                <li><strong>capture*.cap</strong>: The capture files containing the IVs.</li>
+            </ul>
+
+            <p><strong>Cracking WPA/WPA2 Encryption:</strong></p>
+            <code>aircrack-ng -w wordlist.txt -b AA:BB:CC:DD:EE:FF capture.cap</code>
+            <br><br>
+            <ul>
+                <li><strong>-w</strong>: Specifies the wordlist file for dictionary attack.</li>
+                <li><strong>-b</strong>: Specifies the BSSID of the target network.</li>
+                <li><strong>capture.cap</strong>: The capture file containing the handshake.</li>
+            </ul>
+
+            <h2>Useful Options</h2>
+            <h3>Airodump-ng Options</h3>
+            <ul>
+                <li><code>--ivs</code>: Only capture initialization vectors (IVs).</li>
+                <li><code>--encrypt</code>: Filter networks by encryption type (WEP, WPA, WPA2).</li>
+                <li><code>--essid</code>: Filter networks by ESSID.</li>
+                <li><code>--output-format</code>: Specify output file format (pcap, ivs, csv, kismet, gps).</li>
+            </ul>
+
+            <h3>Aireplay-ng Options</h3>
+            <ul>
+                <li><code>--fakeauth</code>: Perform fake authentication with the access point.</li>
+                <li><code>--arpreplay</code>: Replay ARP requests to generate traffic.</li>
+                <li><code>-h</code>: Specify the MAC address of the client.</li>
+            </ul>
+
+            <h3>Aircrack-ng Options</h3>
+            <ul>
+                <li><code>-a</code>: Force attack mode (1=WEP, 2=WPA/WPA2).</li>
+                <li><code>-e</code>: Target network ESSID.</li>
+                <li><code>-l</code>: Write the found key to a file.</li>
+                <li><code>-q</code>: Quiet mode, less verbose output.</li>
+                <li><code>-K</code>: Use PTW attack against WEP (faster cracking).</li>
+            </ul>
+
+            <h2>Additional Tools in Aircrack-ng Suite</h2>
+            <ul>
+                <li><strong>Airmon-ng</strong>: Enables monitor mode on wireless interfaces.</li>
+                <li><strong>Airodump-ng</strong>: For packet capturing of raw 802.11 frames.</li>
+                <li><strong>Aireplay-ng</strong>: Packet injection tool to generate traffic.</li>
+                <li><strong>Airbase-ng</strong>: Used for configuring rogue access points.</li>
+                <li><strong>Airdecap-ng</strong>: Decrypts WEP/WPA/WPA2 capture files.</li>
+                <li><strong>Packetforge-ng</strong>: Creates custom packets for injection.</li>
+                <li><strong>Airtun-ng</strong>: Virtual tunnel interface creator.</li>
+                <li><strong>Airgraph-ng</strong>: Graphing tool to visualize networks.</li>
+            </ul>
+
+            <h2>Troubleshooting and Tips</h2>
+            <ul>
+                <li><strong>Monitor Mode:</strong> Use <code>airmon-ng start wlan0</code> to enable monitor mode on your wireless interface.</li>
+                <li><strong>Interference:</strong> Kill interfering processes with <code>airmon-ng check kill</code> to prevent network managers from disrupting your operations.</li>
+                <li><strong>Root Privileges:</strong> Most Aircrack-ng tools require root access; use <code>sudo</code> before commands.</li>
+                <li><strong>Wireless Adapter:</strong> Ensure your wireless adapter supports monitor mode and packet injection.</li>
+                <li><strong>Channel Locking:</strong> Lock the channel with <code>--channel</code> to avoid missing packets due to channel hopping.</li>
+                <li><strong>Wordlists:</strong> Use comprehensive wordlists for WPA/WPA2 cracking, like those from <a href="https://github.com/danielmiessler/SecLists">SecLists</a>.</li>
+            </ul>
+
+            <h2>Legal Considerations</h2>
+            <p>Always obtain proper authorization before using Aircrack-ng to test network security. Unauthorized access to networks is illegal and unethical.</p>
+
+            <h2>External Links</h2>
+            <ul>
+                <li><a href="https://www.aircrack-ng.org/doku.php">Official Aircrack-ng Documentation</a></li>
+                <li><a href="https://www.aircrack-ng.org/">Aircrack-ng Official Website</a></li>
+                <li><a href="https://www.kali.org/tools/aircrack-ng/">Aircrack-ng on Kali Linux</a></li>
+            </ul>
+
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Cykitool Library made by Students4Cyber. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
