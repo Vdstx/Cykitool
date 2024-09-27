@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forensics Tools - samdump2</title>
+    <link rel="stylesheet" href="../styles/tools.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="../scripts/list-script.js"></script>
+</head>
+
+<body>
+    <header id="forensicsContainer" class="category-header">
+        <div class="container">
+            <div class="category-name">
+                <h1><a href="forensics.html">Forensics</a></h1>
+                <p><a href="../index.html">Home</a></p>
+            </div>
+            <div class="tool-info">
+                <img src="../images/samdump2.svg" alt="samdump2 Logo" class="tool-logo">
+                <h2>samdump2</h2>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="tools-list-container-forensics"></div>
+
+        <section class="tool-description">
+            <h2>About samdump2</h2>
+            <p><strong>samdump2</strong> is a forensic tool used to extract password hashes from Windows Security Account Manager (SAM) databases. It works by reading the SYSTEM and SAM registry hive files, allowing investigators to obtain NTLM and LM password hashes for analysis. This tool is commonly used in digital forensics and security auditing to assess password strength and recover lost passwords.</p>
+            <br>
+
+            <h2>Installation</h2>
+            <p>On Debian-based Linux distributions:</p>
+            <code>sudo apt-get install samdump2</code>
+            <br><br>
+            <p>To build from source:</p>
+            <code>git clone https://github.com/moyix/samdump2<br>
+                cd samdump2<br>
+                make<br>
+                sudo make install</code>
+            <br><br>
+
+            <h2>Examples of samdump2 Usage</h2>
+            <p><strong>Extracting Password Hashes from SAM and SYSTEM Files:</strong></p>
+            <code>samdump2 SYSTEM SAM > hashes.txt</code>
+            <br><br>
+            <ul>
+                <li><strong>SYSTEM</strong>: The SYSTEM registry hive file containing the SYSKEY.</li>
+                <li><strong>SAM</strong>: The SAM registry hive file containing user account information.</li>
+                <li><strong>hashes.txt</strong>: The output file where the extracted hashes will be saved.</li>
+            </ul>
+
+            <p><strong>Using samdump2 with a Different Output Format:</strong></p>
+            <code>samdump2 SYSTEM SAM | cut -d ":" -f1,4 > ntlm_hashes.txt</code>
+            <br><br>
+            <ul>
+                <li><strong>cut -d ":" -f1,4</strong>: Extracts the username and NTLM hash fields.</li>
+                <li><strong>ntlm_hashes.txt</strong>: The file containing formatted NTLM hashes.</li>
+            </ul>
+
+            <h2>Useful Options</h2>
+            <ul>
+                <li><code>-o</code>: Specifies the output file for the hashes.</li>
+                <li><code>-d</code>: Enables debug mode for detailed output.</li>
+                <li><code>-h</code>: Displays the help message with usage instructions.</li>
+            </ul>
+
+            <h2>Troubleshooting and Tips</h2>
+            <ul>
+                <li><strong>Access Permissions:</strong> Ensure you have the necessary permissions to read the SAM and SYSTEM files, which may require administrative privileges.</li>
+                <li><strong>Acquiring Registry Hives:</strong> Use tools like <em>reg save</em> or boot into a live environment to copy the SAM and SYSTEM files from a Windows machine.</li>
+                <li><strong>Hash Cracking:</strong> After extracting the hashes, use password cracking tools like <em>John the Ripper</em> or <em>Hashcat</em> to attempt to recover plaintext passwords.</li>
+                <li><strong>Compatibility:</strong> samdump2 is compatible with Windows NT, 2000, XP, Vista, 7, and some versions of Windows 8 and 10.</li>
+            </ul>
+
+            <h2>Legal Considerations</h2>
+            <p>Always ensure you have proper authorization before accessing and extracting password hashes from systems. Unauthorized access to computer systems and data is illegal and unethical.</p>
+
+            <h2>External Links</h2>
+            <ul>
+                <li><a href="https://github.com/moyix/samdump2">samdump2 on GitHub</a></li>
+                <li><a href="https://www.openwall.com/john/doc/README-win32">John the Ripper Documentation</a></li>
+                <li><a href="https://www.tarsnap.com/sam.html">Understanding Windows SAM Files</a></li>
+            </ul>
+
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Cykitool Library made by Students4Cyber. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

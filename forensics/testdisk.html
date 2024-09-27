@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forensics Tools - TestDisk</title>
+    <link rel="stylesheet" href="../styles/tools.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="../scripts/list-script.js"></script>
+</head>
+
+<body>
+    <header id="forensicsContainer" class="category-header">
+        <div class="container">
+            <div class="category-name">
+                <h1><a href="forensics.html">Forensics</a></h1>
+                <p><a href="../index.html">Home</a></p>
+            </div>
+            <div class="tool-info">
+                <img src="../images/testdisk.png" alt="TestDisk Logo" class="tool-logo">
+                <h2>TestDisk</h2>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="tools-list-container-forensics"></div>
+
+        <section class="tool-description">
+            <h2>About TestDisk</h2>
+            <p><strong>TestDisk</strong> is a powerful open-source data recovery utility designed to help recover lost partitions and make non-booting disks bootable again. It works with a variety of filesystems and operating systems, making it a versatile tool for both professionals and home users. TestDisk can fix partition tables, recover deleted partitions, rebuild boot sectors, and more.</p>
+            <br>
+
+            <h2>Installation</h2>
+            <p>On Debian-based Linux distributions:</p>
+            <code>sudo apt-get install testdisk</code>
+            <br><br>
+            <p>For other platforms or to download the latest version:</p>
+            <ul>
+                <li>Download link: <a href="https://www.cgsecurity.org/wiki/TestDisk_Download">Official TestDisk & PhotoRec Download</a></li>
+            </ul>
+            <br>
+
+            <h2>Examples of TestDisk Usage</h2>
+            <p><strong>Recovering a Lost Partition:</strong></p>
+            <ol>
+                <li>Run TestDisk as root or with sudo:</li>
+                <code>sudo testdisk</code>
+                <li>Select <strong>Create</strong> to create a new log file.</li>
+                <li>Choose the disk that contains the lost partition.</li>
+                <li>Select the partition table type (usually <strong>Intel</strong> for PC).</li>
+                <li>Select <strong>Analyse</strong> to scan for partitions.</li>
+                <li>Proceed with <strong>Quick Search</strong>. If the partition is not found, use <strong>Deeper Search</strong>.</li>
+                <li>Once the lost partition is found, select it and press <code>p</code> to list files (optional).</li>
+                <li>Press <code>Enter</code> to continue, then <code>Write</code> to save the partition table.</li>
+                <li>Confirm and reboot the system.</li>
+            </ol>
+            <br>
+
+            <p><strong>Rebuilding a Corrupted NTFS Boot Sector:</strong></p>
+            <ol>
+                <li>Run TestDisk:</li>
+                <code>sudo testdisk</code>
+                <li>Select <strong>Create</strong> or <strong>Append</strong> to create or add to a log file.</li>
+                <li>Select the disk and partition with the corrupted boot sector.</li>
+                <li>Choose <strong>Advanced</strong> and select the partition.</li>
+                <li>Select <strong>Boot</strong>, then choose <strong>Rebuild BS</strong> to rebuild the boot sector.</li>
+                <li>Confirm and write the new boot sector.</li>
+            </ol>
+            <br>
+
+            <p><strong>Copying Files from a Damaged Partition:</strong></p>
+            <ol>
+                <li>Navigate to the desired partition in TestDisk.</li>
+                <li>Press <code>p</code> to list files and directories.</li>
+                <li>Select files/directories using <code>:</code> and press <code>c</code> to copy.</li>
+                <li>Choose the destination directory to save the copied files.</li>
+            </ol>
+            <br>
+
+            <h2>Useful Options</h2>
+            <ul>
+                <li><strong>Analyse</strong>: Scans for lost partitions and recovers them.</li>
+                <li><strong>Advanced</strong>: Access advanced filesystem utilities like boot sector recovery.</li>
+                <li><strong>Geometry</strong>: Modify disk geometry settings if detected incorrectly.</li>
+                <li><strong>Options</strong>: Set various options like enabling expert mode.</li>
+                <li><strong>MBR Code</strong>: Rewrites the Master Boot Record code.</li>
+                <li><strong>EFI GPT</strong>: Support for GUID Partition Table (GPT) disks.</li>
+            </ul>
+
+            <h2>Troubleshooting and Tips</h2>
+            <ul>
+                <li><strong>Read-Only Mode:</strong> TestDisk operates in read-only mode until changes are explicitly written, minimizing the risk of data loss.</li>
+                <li><strong>Backup Data:</strong> If possible, backup the entire disk or partition before making changes.</li>
+                <li><strong>Documentation:</strong> Refer to the official documentation for detailed instructions on specific recovery scenarios.</li>
+                <li><strong>Disk Identification:</strong> Ensure you select the correct disk to avoid modifying the wrong device.</li>
+                <li><strong>File System Support:</strong> TestDisk supports various filesystems including FAT12/16/32, NTFS, exFAT, ext2/3/4, and HFS+.</li>
+            </ul>
+
+            <h2>Example: Recovering a Deleted Partition on a USB Drive</h2>
+            <p>If you've accidentally deleted a partition on a USB drive:</p>
+            <ol>
+                <li>Insert the USB drive and identify its device name (e.g., <code>/dev/sdc</code>).</li>
+                <li>Run TestDisk:</li>
+                <code>sudo testdisk</code>
+                <li>Select <strong>Create</strong> to start a new log.</li>
+                <li>Choose the USB drive from the list.</li>
+                <li>Select the appropriate partition table type.</li>
+                <li>Proceed with <strong>Analyse</strong> and <strong>Quick Search</strong>.</li>
+                <li>When the deleted partition appears, select it and press <code>p</code> to verify files.</li>
+                <li>If correct, proceed to write the partition table and reboot if necessary.</li>
+            </ol>
+            <br>
+
+            <h2>Legal Considerations</h2>
+            <p>Ensure you have the legal right and authorization to recover data from the device. Unauthorized recovery of data may violate privacy laws and regulations.</p>
+
+            <h2>External Links</h2>
+            <ul>
+                <li><a href="https://www.cgsecurity.org/wiki/TestDisk_Step_By_Step">Official TestDisk Step-by-Step Guide</a></li>
+                <li><a href="https://www.youtube.com/watch?v=3jJ0eJzz6Tk">TestDisk Tutorial Video</a></li>
+            </ul>
+
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Cykitool Library made by Students4Cyber. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

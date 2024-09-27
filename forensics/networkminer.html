@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forensics Tools - NetworkMiner</title>
+    <link rel="stylesheet" href="../styles/tools.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="../scripts/list-script.js"></script>
+</head>
+
+<body>
+    <header id="forensicsContainer" class="category-header">
+        <div class="container">
+            <div class="category-name">
+                <h1><a href="forensics.html">Forensics</a></h1>
+                <p><a href="../index.html">Home</a></p>
+            </div>
+            <div class="tool-info">
+                <img src="../images/networkminer.png" alt="NetworkMiner Logo" class="tool-logo">
+                <h2>NetworkMiner</h2>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="tools-list-container-forensics"></div>
+
+        <section class="tool-description">
+            <h2>About NetworkMiner</h2>
+            <p><strong>NetworkMiner</strong> is an open-source network forensic analysis tool (NFAT) for Windows. It can be used as a passive network sniffer/packet capturing tool to detect operating systems, sessions, hostnames, open ports, and more without putting any traffic on the network. NetworkMiner can also parse PCAP files for offline analysis and extract files and certificates transferred over the network.</p>
+            <br>
+
+            <h2>Installation</h2>
+            <p>NetworkMiner is available for Windows, but it can run on Linux and macOS using Mono.</p>
+            <ul>
+                <li>Download link: <a href="https://www.netresec.com/?page=NetworkMiner">Official NetworkMiner Download</a></li>
+            </ul>
+            <br>
+            <p><strong>On Windows:</strong></p>
+            <ol>
+                <li>Download the ZIP file from the official website.</li>
+                <li>Extract the contents to a desired location.</li>
+                <li>Run <code>NetworkMiner.exe</code> as Administrator.</li>
+            </ol>
+            <br>
+            <p><strong>On Linux/macOS using Mono:</strong></p>
+            <ol>
+                <li>Install Mono:</li>
+                <code>sudo apt-get install mono-complete</code>
+                <li>Download and extract NetworkMiner.</li>
+                <li>Run NetworkMiner using Mono:</li>
+                <code>mono NetworkMiner.exe</code>
+            </ol>
+            <br>
+
+            <h2>Examples of NetworkMiner Usage</h2>
+            <p><strong>Live Network Sniffing:</strong></p>
+            <ol>
+                <li>Launch NetworkMiner with administrative privileges.</li>
+                <li>Select your network interface from the dropdown menu.</li>
+                <li>Click on <strong>Start</strong> to begin capturing network traffic.</li>
+                <li>NetworkMiner will passively collect data and display hosts, sessions, and extracted files.</li>
+            </ol>
+            <br>
+
+            <p><strong>Analyzing PCAP Files:</strong></p>
+            <ol>
+                <li>Open NetworkMiner.</li>
+                <li>Go to <strong>File</strong> &gt; <strong>Open PCAP</strong>.</li>
+                <li>Select the PCAP file you wish to analyze.</li>
+                <li>NetworkMiner will parse the file and display the extracted information.</li>
+            </ol>
+            <br>
+
+            <p><strong>Extracting Transferred Files:</strong></p>
+            <ol>
+                <li>After capturing or loading a PCAP file, navigate to the <strong>Files</strong> tab.</li>
+                <li>NetworkMiner will list files transferred over the network, categorized by protocol.</li>
+                <li>Right-click on a file to save or open it.</li>
+            </ol>
+            <br>
+
+            <h2>Useful Features</h2>
+            <ul>
+                <li><strong>Host Identification:</strong> Provides details about each host, including IP addresses, MAC addresses, OS, and open ports.</li>
+                <li><strong>Credential Extraction:</strong> Extracts credentials such as usernames and passwords transmitted over the network (when not encrypted).</li>
+                <li><strong>File Carving:</strong> Automatically extracts files from network traffic, including images, documents, and executables.</li>
+                <li><strong>DNS and Protocol Analysis:</strong> Displays DNS queries and supports various protocols like HTTP, FTP, SMTP, SMB, and more.</li>
+                <li><strong>SSL/TLS Certificates:</strong> Extracts and displays SSL/TLS certificates exchanged during secure sessions.</li>
+                <li><strong>Custom Scripts:</strong> Supports extensions through custom scripts for advanced analysis.</li>
+            </ul>
+
+            <h2>Troubleshooting and Tips</h2>
+            <ul>
+                <li><strong>Promiscuous Mode:</strong> Ensure your network interface supports promiscuous mode to capture all network traffic.</li>
+                <li><strong>Administrative Rights:</strong> Run NetworkMiner with administrative privileges to access network interfaces properly.</li>
+                <li><strong>Passive Sniffing:</strong> NetworkMiner does not transmit packets; use it for passive monitoring to avoid network disruptions.</li>
+                <li><strong>Encryption Limitations:</strong> Encrypted traffic (e.g., HTTPS) cannot be decrypted without the appropriate keys.</li>
+                <li><strong>Use with Wireshark:</strong> Combine NetworkMiner with Wireshark for comprehensive network analysis.</li>
+                <li><strong>Filtering:</strong> Use filters to focus on specific hosts, protocols, or types of data.</li>
+            </ul>
+
+            <h2>Example: Extracting Images from Network Traffic</h2>
+            <p>If you want to extract images transferred over HTTP from a PCAP file:</p>
+            <ol>
+                <li>Open NetworkMiner and load the PCAP file.</li>
+                <li>Navigate to the <strong>Images</strong> tab.</li>
+                <li>All images detected in the network traffic will be displayed.</li>
+                <li>You can preview and save the images for further analysis.</li>
+            </ol>
+            <br>
+
+            <h2>Legal Considerations</h2>
+            <p>Ensure you have the legal right and authorization to capture and analyze network traffic. Unauthorized interception of network communications is illegal and unethical.</p>
+
+            <h2>External Links</h2>
+            <ul>
+                <li><a href="https://www.netresec.com/?page=NetworkMiner">Official NetworkMiner Page</a></li>
+                <li><a href="https://www.netresec.com/?page=Tutorials">NetworkMiner Tutorials</a></li>
+                <li><a href="https://www.youtube.com/watch?v=5G0uRpEULzE">NetworkMiner Tutorial Video</a></li>
+            </ul>
+
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Cykitool Library made by Students4Cyber. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

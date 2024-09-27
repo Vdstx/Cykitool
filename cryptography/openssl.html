@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryptography Tools - OpenSSL</title>
+    <link rel="stylesheet" href="../styles/tools.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="../scripts/list-script.js"></script>
+</head>
+
+<body>
+    <header id="cryptoContainer" class="category-header">
+        <div class="container">
+            <div class="category-name">
+                <h1><a href="cryptography.html">Cryptography</a></h1>
+                <p><a href="../index.html">Home</a></p>
+            </div>
+            <div class="tool-info">
+                <img src="../images/openssl.png" alt="OpenSSL Logo" class="tool-logo">
+                <h2>OpenSSL</h2>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="tools-list-container-crypto"></div>
+
+        <section class="tool-description">
+            <h2>About OpenSSL</h2>
+            <p><strong>OpenSSL</strong> is a robust, full-featured open-source toolkit implementing the Secure Sockets Layer (SSL) and Transport Layer Security (TLS) protocols, as well as a general-purpose cryptography library. It is widely used for securing communications over computer networks against eavesdropping and is fundamental in securing the internet.</p>
+            <br>
+
+            <h2>Installation</h2>
+            <p>On Linux systems, you can install OpenSSL using your package manager:</p>
+            <code>sudo apt-get install openssl</code>
+            <br><br>
+            <p>For macOS using Homebrew:</p>
+            <code>brew install openssl</code>
+            <br><br>
+            <p>To build from source, download the latest version from the <a href="https://www.openssl.org/source/">official website</a> and follow the compilation instructions.</p>
+            <br>
+
+            <h2>Examples of OpenSSL Usage</h2>
+            <p><strong>Generating a Private Key and Certificate Signing Request (CSR):</strong></p>
+            <code>openssl req -new -newkey rsa:2048 -nodes -keyout mykey.key -out myrequest.csr</code>
+            <br><br>
+            <ul>
+                <li><strong>-newkey rsa:2048</strong>: Generates a new RSA key of 2048 bits.</li>
+                <li><strong>-nodes</strong>: Specifies that the private key should not be encrypted.</li>
+                <li><strong>-keyout</strong>: Specifies the filename for the private key.</li>
+                <li><strong>-out</strong>: Specifies the output filename for the CSR.</li>
+            </ul>
+
+            <p><strong>Generating a Self-Signed Certificate:</strong></p>
+            <code>openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout mykey.key -out mycert.crt</code>
+            <br><br>
+            <ul>
+                <li><strong>-x509</strong>: Outputs a self-signed certificate instead of a CSR.</li>
+                <li><strong>-days 365</strong>: Sets the certificate validity period to 365 days.</li>
+            </ul>
+
+            <p><strong>Encrypting a File:</strong></p>
+            <code>openssl enc -aes-256-cbc -salt -in plaintext.txt -out encrypted.txt</code>
+            <br><br>
+            <ul>
+                <li><strong>enc</strong>: Specifies the encryption command.</li>
+                <li><strong>-aes-256-cbc</strong>: Uses AES encryption with a 256-bit key in CBC mode.</li>
+                <li><strong>-salt</strong>: Adds a salt to the encryption for better security.</li>
+            </ul>
+
+            <p><strong>Decrypting a File:</strong></p>
+            <code>openssl enc -d -aes-256-cbc -in encrypted.txt -out decrypted.txt</code>
+            <br><br>
+            <ul>
+                <li><strong>-d</strong>: Specifies decryption mode.</li>
+            </ul>
+
+            <p><strong>Checking Certificate Information:</strong></p>
+            <code>openssl x509 -in mycert.crt -text -noout</code>
+            <br><br>
+            <ul>
+                <li><strong>x509</strong>: Specifies certificate handling.</li>
+                <li><strong>-text</strong>: Outputs the certificate in text form.</li>
+                <li><strong>-noout</strong>: Suppresses the output of the encoded version of the certificate.</li>
+            </ul>
+
+            <h2>Common OpenSSL Commands</h2>
+            <ul>
+                <li><code>openssl genrsa</code>: Generates an RSA private key.</li>
+                <li><code>openssl rsa</code>: RSA key processing tool.</li>
+                <li><code>openssl dhparam</code>: Generates Diffie-Hellman parameters.</li>
+                <li><code>openssl s_client</code>: Implements a generic SSL/TLS client for testing SSL/TLS connections.</li>
+                <li><code>openssl s_server</code>: Implements a generic SSL/TLS server for testing SSL/TLS clients.</li>
+            </ul>
+
+            <h2>Useful Options</h2>
+            <ul>
+                <li><code>-in</code>: Specifies the input file.</li>
+                <li><code>-out</code>: Specifies the output file.</li>
+                <li><code>-passin</code>: Specifies the input file passphrase source.</li>
+                <li><code>-passout</code>: Specifies the output file passphrase source.</li>
+                <li><code>-config</code>: Specifies the configuration file.</li>
+                <li><code>-verify</code>: Verifies certificate signatures.</li>
+                <li><code>-CAfile</code>: Specifies the CA certificate to use for verification.</li>
+            </ul>
+
+            <h2>Troubleshooting and Tips</h2>
+            <ul>
+                <li><strong>Certificate Chain Issues:</strong> Use <code>openssl verify</code> to ensure your certificate chain is correctly set up.</li>
+                <li><strong>Debugging SSL/TLS Connections:</strong> Use <code>openssl s_client</code> to test and debug SSL/TLS connections to a server.</li>
+                <li><strong>Converting Certificates:</strong> OpenSSL can convert certificates between different formats (e.g., PEM to DER) using the <code>openssl x509</code> command with appropriate flags.</li>
+                <li><strong>Random Number Generation:</strong> Ensure your system has a good source of entropy for cryptographic operations; consider using hardware random number generators if available.</li>
+            </ul>
+
+            <h2>Security Best Practices</h2>
+            <ul>
+                <li><code>Use Strong Keys:</code> Generate keys with at least 2048 bits for RSA to ensure adequate security.</li>
+                <li><code>Protect Private Keys:</code> Always keep your private keys secure and consider encrypting them with a passphrase.</li>
+                <li><code>Keep OpenSSL Updated:</code> Regularly update OpenSSL to the latest version to patch security vulnerabilities.</li>
+                <li><code>Disable Weak Ciphers:</code> Configure your applications to disable weak ciphers and protocols like SSLv2 and SSLv3.</li>
+            </ul>
+
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Cykitool Library made by Students4Cyber. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
