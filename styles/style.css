@@ -48,7 +48,7 @@ header nav ul li a {
 }
 
 .hero {
-    background-color: #bee5ec;
+    background-color: #999681;
     color: #333;
     padding: 100px 0;
     text-align: center;
@@ -87,6 +87,7 @@ header nav ul li a {
 .category h3 {
     font-size: 1.5rem;
     margin-bottom: 10px;
+    color : #f5f2db;
 }
 
 .category p {
@@ -97,7 +98,7 @@ header nav ul li a {
 
 .btn {
     display: inline-block;
-    background-color: #bee5ec;
+    background-color: #d9d58c;
     color: #333;
     padding: 10px 20px;
     text-decoration: none;
@@ -107,34 +108,34 @@ header nav ul li a {
 }
 
 .btn:hover {
-    background-color: #7fd959;
+    background-color: #8c88a6;
 }
 
 
 
 #crypto{
-    background-color: #90b4bb;
+    background-color: #625d5d;
 }
 
 #web{
-    background-color: #90b4bb;
+    background-color: #625d5d;
 }
 
 #network{
-    background-color: #90b4bb;
+    background-color: #625d5d;
 }
 
 #forensics{
-    background-color:#90b4bb ;
+    background-color:#625d5d ;
 }
 
 #stegano{
-    background-color:#90b4bb ;
+    background-color:#625d5d ;
 }
 
 
 footer {
-    background-color: #bee5ec;
+    background-color: #625d5d;
     color: #fff;
     text-align: center;
     padding: 20px 0;

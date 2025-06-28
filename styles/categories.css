@@ -14,27 +14,27 @@ body {
 }
 
 #cryptoContainer{
-    background-color: #90b4bb;
+    background-color: #d9d58c;
 }
 
 #webContainer{
-    background-color: #90b4bb;
+    background-color: #d9d58c;
 }
 
 #networkContainer{
-    background-color: #90b4bb;
+    background-color: #d9d58c;
 }
 
 #forensicsContainer{
-    background-color: #90b4bb;
+    background-color: #d9d58c;
 }
 
 #steganoContainer{
-    background-color: #90b4bb;
+    background-color: #d9d58c;
 }
 
 header.category-header {
-    background-color: #3fa9d5;
+    background-color: #d9d58c;
     color: #333;
     padding: 20px 0;
     text-align: center;
@@ -116,7 +116,7 @@ main.container {
 }
 
 footer {
-    background-color: #bee5ec;
+    background-color: #d9d58c;
     color: #fff;
     text-align: center;
     padding: 20px 0;
